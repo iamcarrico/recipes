@@ -1,40 +1,36 @@
 <template>
   <div class="container">
     <div>
-      <logo />
       <h1 class="title">
         recipes.iancarrico.com
       </h1>
-      <h2 class="subtitle">
-        A small app that contains some of my favorite recipes I have found or developed. 
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+
+      <recipe-list :recipes="recipes"></recipe-list>
+
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import RecipeList from '~/components/RecipeList.vue'
+
+import ButternutSquash from '~/recipes/json/Butternut Squash Soup.json'
+import Pickles from '~/recipes/json/Quick & Easy Refrigerator Pickles.json'
+import MacAndCheese from '~/recipes/json/How to Make Creamy Macaroni and Cheese on the Stove.json'
 
 export default {
   components: {
-    Logo
+    RecipeList
+  },
+  data: function () {
+  return {
+    recipes: [
+      ButternutSquash,
+      Pickles,
+      MacAndCheese
+    ]
   }
+}
 }
 </script>
 
@@ -58,15 +54,4 @@ export default {
   letter-spacing: 1px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
