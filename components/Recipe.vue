@@ -4,7 +4,7 @@
   </article>
 </template>
 
-<style>
+<style lang="scss">
 .Recipe {
   color: blue;
 }
