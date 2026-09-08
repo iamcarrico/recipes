@@ -1,0 +1,29 @@
+{
+  "name": "carrico-recipes",
+  "version": "1.0.0",
+  "description": "A static microsite for the Carrico family's favorite recipes.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm-run-all clean --parallel build:*",
+    "build:css": "sass src/assets/scss/main.scss src/assets/css/main.css --style=compressed --no-source-map",
+    "build:site": "eleventy",
+    "clean": "rm -rf _site src/assets/css",
+    "dev": "npm-run-all clean build:css --parallel watch:*",
+    "watch:css": "sass src/assets/scss/main.scss src/assets/css/main.css --watch --no-source-map",
+    "watch:site": "eleventy --serve",
+    "import": "node scripts/import-paprika.js"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "npm-run-all2": "^7.0.2",
+    "sass": "^1.83.0"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "js-yaml": "^4.1.0"
+  }
+}
