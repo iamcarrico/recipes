@@ -1,0 +1,91 @@
+@use "../abstracts/tokens" as *;
+
+.scaler {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-block: var(--space-md);
+  padding: var(--space-xs);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+
+  &__label {
+    padding-left: var(--space-sm);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--color-ink-soft);
+  }
+
+  &__buttons {
+    display: flex;
+    gap: var(--space-2xs);
+    margin-left: auto;
+  }
+
+  &__button {
+    min-width: 3rem;
+    padding: 0.35rem 0.6rem;
+    font-size: var(--step--1);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius-pill);
+    color: var(--color-ink-soft);
+    transition: background 150ms ease, color 150ms ease;
+
+    &:hover {
+      background: var(--color-accent-soft);
+      color: var(--color-accent);
+    }
+
+    &[aria-pressed="true"] {
+      background: var(--color-accent);
+      color: #fff;
+    }
+  }
+}
+
+.ingredients {
+  display: grid;
+  gap: var(--space-xs);
+
+  &__heading {
+    margin-top: var(--space-md);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-soft);
+  }
+}
+
+.ingredient {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px dashed var(--color-line);
+
+  &__amount {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-accent);
+    transition: background-color 400ms ease;
+  }
+
+  &__name {
+    flex: 1;
+    min-width: 8rem;
+  }
+
+  // Brief highlight so a changed amount is noticeable after rescaling.
+  &__amount.is-changed {
+    background-color: #ffe9a8;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 0 0.2em #ffe9a8;
+    transition: none;
+  }
+}

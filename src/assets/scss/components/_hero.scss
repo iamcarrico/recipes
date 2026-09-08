@@ -1,0 +1,17 @@
+.hero {
+  padding-block: var(--space-xl) var(--space-lg);
+  background:
+    radial-gradient(60rem 22rem at 12% -20%, var(--color-accent-soft), transparent 70%),
+    radial-gradient(40rem 18rem at 95% -10%, #fff8e2, transparent 70%);
+
+  &__title {
+    max-width: 18ch;
+  }
+
+  &__tagline {
+    margin-top: var(--space-sm);
+    max-width: 52ch;
+    font-size: var(--step-1);
+    color: var(--color-ink-soft);
+  }
+}

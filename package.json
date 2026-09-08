@@ -8,7 +8,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "npm-run-all clean --parallel build:*",
+    "build": "npm-run-all clean build:css build:site",
     "build:css": "sass src/assets/scss/main.scss src/assets/css/main.css --style=compressed --no-source-map",
     "build:site": "eleventy",
     "clean": "rm -rf _site src/assets/css",

@@ -1,0 +1,48 @@
+// Design tokens. Everything visual traces back to this file.
+
+// Breakpoints stay as Sass variables — they are needed at compile time.
+$bp-sm: 34rem;
+$bp-md: 48rem;
+$bp-lg: 64rem;
+
+:root {
+  // Bright, warm palette: cream paper, one hot accent, one sunny highlight.
+  --color-bg: #fffaf5;
+  --color-surface: #ffffff;
+  --color-ink: #2b2118;
+  --color-ink-soft: #6f6055;
+  --color-line: #f0e4d8;
+  --color-accent: #f0562a;
+  --color-accent-soft: #fff0ea;
+  --color-highlight: #ffc93c;
+  --color-mint: #1f8f66;
+
+  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: ui-rounded, "SF Pro Rounded", system-ui, var(--font-body);
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.09rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --step-3: clamp(2rem, 1.6rem + 2vw, 3.2rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.9rem;
+  --radius-lg: 1.4rem;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgb(43 33 24 / 6%), 0 2px 8px rgb(43 33 24 / 4%);
+  --shadow-md: 0 4px 12px rgb(43 33 24 / 8%), 0 12px 32px rgb(43 33 24 / 8%);
+
+  --wrap: 68rem;
+  --wrap-narrow: 42rem;
+}

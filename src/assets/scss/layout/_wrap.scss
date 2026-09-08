@@ -1,0 +1,14 @@
+.wrap {
+  width: min(100% - 2 * var(--space-md), var(--wrap));
+  margin-inline: auto;
+}
+
+.wrap.narrow,
+.narrow {
+  max-width: var(--wrap-narrow);
+}
+
+.site-main {
+  flex: 1;
+  padding-bottom: var(--space-2xl);
+}
