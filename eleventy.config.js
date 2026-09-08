@@ -1,4 +1,4 @@
-import { parseIngredients, parseServings } from './lib/ingredients.js';
+import { parseIngredients, parseServings, ingredientLines } from './lib/ingredients.js';
 import { formatAmount, formatQuantity } from './src/assets/js/quantity.js';
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
@@ -14,6 +14,7 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter('parseIngredients', parseIngredients);
   eleventyConfig.addFilter('parseServings', parseServings);
+  eleventyConfig.addFilter('ingredientLines', ingredientLines);
   eleventyConfig.addFilter('formatAmount', formatAmount);
   eleventyConfig.addFilter('formatQuantity', formatQuantity);
 
@@ -25,7 +26,7 @@ export default function (eleventyConfig) {
       data.description,
       data.source,
       ...(data.tags ?? []),
-      ...(data.ingredients ?? [])
+      ...ingredientLines(data.ingredients)
     ]
       .filter(Boolean)
       .join(' ')
