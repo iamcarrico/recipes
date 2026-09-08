@@ -1,0 +1,54 @@
+---
+layout: layouts/base.njk
+permalink: /
+---
+<div class="hero">
+  <div class="wrap">
+    <h1 class="hero__title">{{ site.title }}</h1>
+    <p class="hero__tagline">{{ site.description }}</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="filters" aria-label="Filter recipes">
+    <div class="search">
+      <label class="search__label" for="recipe-search">Search recipes</label>
+      <input
+        type="search"
+        id="recipe-search"
+        class="search__input"
+        placeholder="Try &ldquo;cheese&rdquo; or &ldquo;weeknight&rdquo;&hellip;"
+        autocomplete="off"
+        data-search-input
+      >
+    </div>
+
+    {% if collections.recipeTags | length %}
+      <div class="tag-filter">
+        <span class="tag-filter__label" id="tag-filter-label">Tags</span>
+        <ul class="tag-filter__list" role="group" aria-labelledby="tag-filter-label">
+          {% for entry in collections.recipeTags %}
+            <li>
+              <button type="button" class="tag-filter__button" data-tag="{{ entry.tag }}" aria-pressed="false">
+                {{ entry.tag }} <span class="tag-filter__count">{{ entry.count }}</span>
+              </button>
+            </li>
+          {% endfor %}
+        </ul>
+        <button type="button" class="tag-filter__clear" data-clear-filters hidden>Clear filters</button>
+      </div>
+    {% endif %}
+
+    <p class="filters__status" data-result-count role="status" aria-live="polite"></p>
+  </section>
+
+  <ul class="card-grid" data-recipe-grid>
+    {% for recipe in collections.recipes %}
+      <li>{% include "partials/card.njk" %}</li>
+    {% endfor %}
+  </ul>
+
+  <p class="empty-state" data-empty-state hidden>
+    No recipes match that. Try a different search or clear the tag filters.
+  </p>
+</div>

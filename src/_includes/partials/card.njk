@@ -1,0 +1,51 @@
+{#
+  Recipe card. `data-search` and `data-tags` are what the client-side filter
+  reads, so filtering needs no extra network request.
+#}
+<article
+  class="card"
+  data-recipe
+  data-search="{{ recipe | searchHaystack }}"
+  data-tags="{{ recipe.data.tags | join(',') }}"
+>
+  <a class="card__link" href="{{ recipe.url }}">
+    <div class="card__media">
+      {% if recipe.data.image %}
+        <img
+          src="{{ recipe.data.image }}"
+          alt="{{ recipe.data.imageAlt or recipe.data.title }}"
+          loading="lazy"
+          decoding="async"
+          width="600"
+          height="450"
+        >
+      {% else %}
+        <span class="card__placeholder" aria-hidden="true">🍽️</span>
+      {% endif %}
+    </div>
+
+    <div class="card__body">
+      <h2 class="card__title">{{ recipe.data.title }}</h2>
+      {% if recipe.data.description %}
+        <p class="card__description">{{ recipe.data.description }}</p>
+      {% endif %}
+
+      <dl class="card__meta">
+        {% if recipe.data.totalTime %}
+          <div><dt>Time</dt><dd>{{ recipe.data.totalTime }}</dd></div>
+        {% endif %}
+        {% if recipe.data.servings %}
+          <div><dt>Serves</dt><dd>{{ recipe.data.servings }}</dd></div>
+        {% endif %}
+      </dl>
+    </div>
+  </a>
+
+  {% if recipe.data.tags | length %}
+    <ul class="card__tags">
+      {% for tag in recipe.data.tags %}
+        <li>{{ tag }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</article>

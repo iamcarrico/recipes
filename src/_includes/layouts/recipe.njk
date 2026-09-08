@@ -1,0 +1,143 @@
+---
+layout: layouts/base.njk
+ogType: article
+---
+{% set parsedIngredients = ingredients | parseIngredients %}
+{% set yield = servings | parseServings %}
+
+<article class="recipe">
+  <header class="recipe__header wrap">
+    <p class="recipe__eyebrow"><a href="/">All recipes</a></p>
+    <h1 class="recipe__title">{{ title }}</h1>
+    {% if description %}<p class="recipe__description">{{ description }}</p>{% endif %}
+
+    {% if tags | length %}
+      <ul class="recipe__tags">
+        {% for tag in tags %}
+          <li><a href="/?tags={{ tag | urlencode }}">{{ tag }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <dl class="recipe__facts">
+      {% if prepTime %}<div><dt>Prep</dt><dd>{{ prepTime }}</dd></div>{% endif %}
+      {% if cookTime %}<div><dt>Cook</dt><dd>{{ cookTime }}</dd></div>{% endif %}
+      {% if totalTime %}<div><dt>Total</dt><dd>{{ totalTime }}</dd></div>{% endif %}
+      {% if yield %}
+        <div>
+          <dt>Makes</dt>
+          <dd>
+            <span
+              data-servings
+              {% if yield.quantity %}data-qty="{{ yield.quantity }}"{% endif %}
+              {% if yield.quantityMax %}data-qty-max="{{ yield.quantityMax }}"{% endif %}
+              data-unit="{{ yield.unit }}"
+              data-prefix="{{ yield.prefix }}"
+              data-suffix="{{ yield.suffix }}"
+            >{{ yield.raw }}</span>
+          </dd>
+        </div>
+      {% endif %}
+    </dl>
+  </header>
+
+  {% if image %}
+    <figure class="recipe__figure wrap">
+      <img src="{{ image }}" alt="{{ imageAlt or title }}" width="1200" height="900" decoding="async">
+    </figure>
+  {% endif %}
+
+  <div class="wrap recipe__grid">
+    <section class="recipe__ingredients" aria-labelledby="ingredients-heading">
+      <h2 id="ingredients-heading">Ingredients</h2>
+
+      <div class="scaler" data-scaler>
+        <span class="scaler__label" id="scaler-label">Scale</span>
+        <div class="scaler__buttons" role="group" aria-labelledby="scaler-label">
+          {% for step in [0.5, 1, 2, 3] %}
+            <button
+              type="button"
+              class="scaler__button"
+              data-scale="{{ step }}"
+              aria-pressed="{{ 'true' if step == 1 else 'false' }}"
+            >{{ step | formatQuantity }}&times;</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <ul class="ingredients">
+        {% for item in parsedIngredients %}
+          {% if item.type == 'heading' %}
+            <li class="ingredients__heading">{{ item.text }}</li>
+          {% else %}
+            <li class="ingredient">
+              {% if item.quantity %}
+                <span
+                  class="ingredient__amount"
+                  data-amount
+                  data-qty="{{ item.quantity }}"
+                  {% if item.quantityMax %}data-qty-max="{{ item.quantityMax }}"{% endif %}
+                  data-unit="{{ item.unit }}"
+                >{{ item | formatAmount(1) }}</span>
+              {% endif %}
+              <span class="ingredient__name">{{ item.name }}</span>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="recipe__directions" aria-labelledby="directions-heading">
+      <h2 id="directions-heading">Directions</h2>
+
+      {# Quantities inside prose are left alone; saying so beats silently lying. #}
+      <p class="scale-notice" data-scale-notice hidden>
+        Amounts in the steps below are written for the original recipe.
+      </p>
+
+      <ol class="directions">
+        {% for step in directions %}
+          <li>{{ step }}</li>
+        {% endfor %}
+      </ol>
+
+      {% if content %}
+        <div class="recipe__notes">
+          <h2>Notes</h2>
+          {{ content | safe }}
+        </div>
+      {% endif %}
+
+      {% if nutrition %}
+        <details class="recipe__nutrition">
+          <summary>Nutrition (per serving, as published)</summary>
+          <pre>{{ nutrition }}</pre>
+        </details>
+      {% endif %}
+
+      {% if sourceUrl or source %}
+        <p class="recipe__source">
+          Adapted from
+          {% if sourceUrl %}
+            <a href="{{ sourceUrl }}" rel="noopener noreferrer nofollow">{{ source or sourceUrl }}</a>
+          {% else %}
+            {{ source }}
+          {% endif %}
+        </p>
+      {% endif %}
+    </section>
+  </div>
+</article>
+
+{% set recipeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": title,
+  "description": description,
+  "recipeIngredient": ingredients,
+  "recipeYield": servings,
+  "totalTime": totalTime,
+  "author": { "@type": "Person", "name": site.author },
+  "keywords": tags | join(", ")
+} %}
+<script type="application/ld+json">{{ recipeSchema | jsonLd | safe }}</script>

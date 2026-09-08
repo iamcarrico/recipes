@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if title %}{{ title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ description or site.description }}">
+    <meta name="color-scheme" content="light">
+
+    <meta property="og:type" content="{{ ogType or 'website' }}">
+    <meta property="og:title" content="{{ title or site.title }}">
+    <meta property="og:description" content="{{ description or site.description }}">
+    {% if image %}<meta property="og:image" content="{{ site.url }}{{ image }}">{% endif %}
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a class="site-header__brand" href="/">
+          <span class="site-header__mark" aria-hidden="true">🍳</span>
+          <span>
+            <span class="site-header__title">{{ site.title }}</span>
+            <span class="site-header__tagline">{{ site.tagline }}</span>
+          </span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main" class="site-main">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>&copy; {{ site.buildYear }} {{ site.author }} · {{ collections.recipes | length }} recipes and counting.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/assets/js/main.js"></script>
+  </body>
+</html>
