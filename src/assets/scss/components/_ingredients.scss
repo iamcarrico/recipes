@@ -37,12 +37,12 @@
 
     &:hover {
       background: var(--color-accent-soft);
-      color: var(--color-accent-strong);
+      color: var(--color-accent-text);
     }
 
     &[aria-pressed="true"] {
       background: var(--color-accent-strong);
-      color: #fff;
+      color: var(--color-on-accent);
     }
   }
 }
@@ -76,7 +76,7 @@
   &__amount {
     font-weight: 700;
     font-variant-numeric: tabular-nums;
-    color: var(--color-accent-strong);
+    color: var(--color-accent-text);
     transition: background-color 400ms ease;
   }
 
@@ -87,9 +87,9 @@
 
   // Brief highlight so a changed amount is noticeable after rescaling.
   &__amount.is-changed {
-    background-color: #ffe9a8;
+    background-color: var(--color-flash);
     border-radius: var(--radius-sm);
-    box-shadow: 0 0 0 0.2em #ffe9a8;
+    box-shadow: 0 0 0 0.2em var(--color-flash);
     transition: none;
   }
 }

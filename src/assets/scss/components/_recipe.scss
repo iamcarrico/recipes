@@ -113,7 +113,7 @@
   &__notes {
     margin-top: var(--space-xl);
     padding: var(--space-md);
-    background: #fff8e9;
+    background: var(--color-note);
     border-radius: var(--radius-md);
 
     p + p {
@@ -176,7 +176,7 @@
       height: 2rem;
       border-radius: 50%;
       background: var(--color-accent-strong);
-      color: #fff;
+      color: var(--color-on-accent);
       font-family: var(--font-display);
       font-weight: 700;
       font-size: var(--step--1);
@@ -188,7 +188,7 @@
   margin-top: var(--space-sm);
   padding: var(--space-xs) var(--space-sm);
   font-size: var(--step--1);
-  background: #fff8e9;
+  background: var(--color-note);
   border-left: 3px solid var(--color-highlight);
   border-radius: var(--radius-sm);
   color: var(--color-ink-soft);

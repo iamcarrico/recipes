@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if title %}{{ title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{{ description or site.description }}">
-    <meta name="color-scheme" content="light">
+    <meta name="color-scheme" content="light dark">
+    {# Before the stylesheet, so the saved theme is set before first paint. #}
+    <script src="/assets/js/theme.js"></script>
     {% if site.private %}
       <meta name="robots" content="{{ site.robotsDirectives }}">
       <meta name="tdm-reservation" content="1">
@@ -40,6 +42,17 @@
             <span class="site-header__tagline">{{ site.tagline }}</span>
           </span>
         </a>
+
+        {# Hidden until theme.js is running, since it can't work without it. #}
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode" hidden>
+          <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" />
+          </svg>
+          <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" />
+          </svg>
+        </button>
       </div>
     </header>
 

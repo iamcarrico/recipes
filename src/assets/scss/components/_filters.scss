@@ -80,13 +80,13 @@
 
     &:hover {
       border-color: var(--color-accent);
-      color: var(--color-accent-strong);
+      color: var(--color-accent-text);
     }
 
     &[aria-pressed="true"] {
       background: var(--color-accent-strong);
       border-color: var(--color-accent-strong);
-      color: #fff;
+      color: var(--color-on-accent);
     }
   }
 

@@ -7,18 +7,25 @@ $bp-lg: 64rem;
 
 :root {
   // Bright, warm palette: cream paper, one hot accent, one sunny highlight.
+  // Dark values live in the dark-palette mixin at the bottom of this file.
+  color-scheme: light;
   --color-bg: #fffaf5;
   --color-surface: #ffffff;
   --color-ink: #2b2118;
   --color-ink-soft: #6f6055;
   --color-line: #f0e4d8;
+  // Bright orange for borders, focus rings and decoration only: it is under
+  // 4.5:1 against light backgrounds, so text uses accent-text instead.
   --color-accent: #f0562a;
-  // The bright accent is under 4.5:1 against light backgrounds, so anything
-  // that is text — or carries white text — uses this deeper shade instead.
+  --color-accent-text: #c2410c;
+  // Orange fills that carry on-accent (white) text.
   --color-accent-strong: #c2410c;
+  --color-on-accent: #ffffff;
   --color-accent-soft: #fff0ea;
   --color-highlight: #ffc93c;
-  --color-mint: #1f8f66;
+  --color-highlight-soft: #fff6e0;
+  --color-note: #fff8e9;
+  --color-flash: #ffe9a8;
 
   --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
@@ -48,4 +55,38 @@ $bp-lg: 64rem;
 
   --wrap: 68rem;
   --wrap-narrow: 42rem;
+}
+
+// Warm dark palette, after iamcarrico.com's dark theme. Contrast: body text
+// 13.8:1, muted text 6.5:1 or better, orange text 6.7:1 or better.
+@mixin dark-palette {
+  color-scheme: dark;
+  --color-bg: #1a1714;
+  --color-surface: #24201c;
+  --color-ink: #f3ece4;
+  --color-ink-soft: #b3a79b;
+  --color-line: #3a332c;
+  --color-accent: #ff7a4d;
+  --color-accent-text: #ff9466;
+  --color-accent-strong: #c2410c;
+  --color-on-accent: #ffffff;
+  --color-accent-soft: #3a2419;
+  --color-highlight: #e0a82a;
+  --color-highlight-soft: #2e2618;
+  --color-note: #2a241b;
+  --color-flash: #5a4513;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 30%), 0 2px 8px rgb(0 0 0 / 20%);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 35%), 0 12px 32px rgb(0 0 0 / 30%);
+}
+
+// Chosen with the header toggle (see assets/js/theme.js).
+:root[data-theme="dark"] {
+  @include dark-palette;
+}
+
+// No choice made and no JavaScript to make one: follow the system setting.
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include dark-palette;
+  }
 }
