@@ -117,9 +117,9 @@
     }
   }
 
-  // Phones: a compact row with a thumbnail, so a screen shows several
+  // Narrow screens: a compact row with a thumbnail, so a screen shows several
   // recipes instead of one.
-  @media (max-width: $bp-sm - 0.01rem) {
+  @media (max-width: $bp-cards - 0.01rem) {
     border-radius: var(--radius-md);
 
     &__link {

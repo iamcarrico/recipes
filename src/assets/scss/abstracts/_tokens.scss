@@ -4,6 +4,10 @@
 $bp-sm: 34rem;
 $bp-md: 48rem;
 $bp-lg: 64rem;
+// Cards switch from compact rows to a grid once two 17rem columns fit
+// (about 604px with the page gutters). Below that, one full-width card per
+// row wastes most of the screen.
+$bp-cards: 38rem;
 
 // Bright, warm palette: cream paper, one hot accent, one sunny highlight.
 // A mixin so print can force it even when the screen is in dark mode.
