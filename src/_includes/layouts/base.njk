@@ -16,15 +16,15 @@
     <meta property="og:type" content="{{ ogType or 'website' }}">
     <meta property="og:title" content="{{ title or site.title }}">
     <meta property="og:description" content="{{ description or site.description }}">
-    {% if image %}<meta property="og:image" content="{{ site.url }}{{ image }}">{% endif %}
+    {% if image %}<meta property="og:image" content="{{ site.url }}{{ image | versioned }}">{% endif %}
 
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
+    <link rel="icon" href="{{ '/favicon.ico' | versioned }}" sizes="16x16 32x32">
 
     {# Installable app: Android/desktop read the manifest; iOS reads the apple-* tags. #}
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#ffffff">
-    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="{{ '/assets/icons/apple-touch-icon.png' | versioned }}">
     <meta name="apple-mobile-web-app-title" content="{{ site.shortTitle }}">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,7 +36,7 @@
     <header class="site-header">
       <div class="wrap site-header__inner">
         <a class="site-header__brand" href="/">
-          <img class="site-header__mark" src="/assets/icons/logo.png" width="64" height="46" alt="">
+          <img class="site-header__mark" src="{{ '/assets/icons/logo.png' | versioned }}" width="64" height="46" alt="">
           <span>
             <span class="site-header__title">{{ site.title }}</span>
             <span class="site-header__tagline">{{ site.tagline }}</span>

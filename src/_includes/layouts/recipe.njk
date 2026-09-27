@@ -62,7 +62,7 @@ ogType: article
 
   {% if image %}
     <figure class="recipe__figure wrap">
-      <img src="{{ image }}" alt="{{ imageAlt or title }}" width="1200" height="900" decoding="async">
+      <img src="{{ image | versioned }}" alt="{{ imageAlt or title }}" width="1200" height="900" decoding="async">
     </figure>
   {% endif %}
 

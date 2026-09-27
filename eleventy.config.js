@@ -5,6 +5,7 @@ import { recipeSchema } from './lib/schema.js';
 import { stripMarkdown } from './lib/sections.js';
 import { timerize } from './lib/timers.js';
 import { validateRecipeFile } from './lib/validate.js';
+import { versioned } from './lib/versioned.js';
 import allowedTags from './src/_data/tags.js';
 import { foldForSearch } from './src/assets/js/text.js';
 import { formatAmount, formatQuantity } from './src/assets/js/quantity.js';
@@ -31,6 +32,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('inlineMarkdown', (text) => inlineMarkdown.renderInline(String(text ?? '')));
   eleventyConfig.addFilter('recipeSchema', recipeSchema);
   eleventyConfig.addFilter('timerize', timerize);
+  eleventyConfig.addFilter('versioned', (url) => versioned(url));
   eleventyConfig.addFilter('formatAmount', formatAmount);
   eleventyConfig.addFilter('formatQuantity', formatQuantity);
 
@@ -71,17 +73,13 @@ export default function (eleventyConfig) {
   });
 
   /** App shell for the service worker: pages and files the app can't open without. */
-  eleventyConfig.addFilter('precacheCore', (assets) => [
-    '/',
-    '/offline/',
-    '/manifest.webmanifest',
-    '/favicon.ico',
-    ...assets
-  ]);
+  eleventyConfig.addFilter('precacheCore', (assets) =>
+    ['/', '/offline/', '/manifest.webmanifest', '/favicon.ico', ...assets].map((url) => versioned(url))
+  );
 
   /** Every recipe page plus its photo, for offline use. */
   eleventyConfig.addFilter('precacheRecipes', (recipes) => [
-    ...new Set(recipes.flatMap((recipe) => [recipe.url, recipe.data.image].filter(Boolean)))
+    ...new Set(recipes.flatMap((recipe) => [recipe.url, versioned(recipe.data.image)].filter(Boolean)))
   ]);
 
   /**

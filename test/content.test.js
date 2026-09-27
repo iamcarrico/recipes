@@ -44,3 +44,13 @@ test('folds accents and case for search', () => {
   assert.equal(foldForSearch('Crème Fraîche'), 'creme fraiche');
   assert.equal(foldForSearch('JALAPEÑO'), 'jalapeno');
 });
+
+test('fingerprints image URLs by content, leaving other files alone', async () => {
+  const { versioned } = await import('../lib/versioned.js');
+  const icon = versioned('/assets/icons/apple-touch-icon.png');
+  assert.match(icon, /^\/assets\/icons\/apple-touch-icon\.png\?v=[0-9a-f]{10}$/);
+  assert.equal(versioned('/assets/icons/apple-touch-icon.png'), icon, 'stable for the same file');
+  assert.notEqual(versioned('/assets/icons/icon-192.png').split('?v=')[1], icon.split('?v=')[1]);
+  assert.equal(versioned('/assets/css/main.css'), '/assets/css/main.css');
+  assert.equal(versioned('/assets/icons/missing.png'), '/assets/icons/missing.png');
+});

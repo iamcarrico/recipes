@@ -13,7 +13,7 @@
     <div class="card__media">
       {% if recipe.data.image %}
         <img
-          src="{{ recipe.data.image }}"
+          src="{{ recipe.data.image | versioned }}"
           alt="{{ recipe.data.imageAlt or recipe.data.title }}"
           loading="lazy"
           decoding="async"
