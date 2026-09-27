@@ -252,6 +252,10 @@ function parseArguments(argv) {
         options.recipeDir = argv[index + 1] ?? RECIPE_DIR;
         index += 1;
         break;
+      case '--images':
+        options.imageDir = argv[index + 1] ?? IMAGE_DIR;
+        index += 1;
+        break;
       default:
         if (argument.startsWith('-')) {
           console.error(`Unknown option "${argument}".`);
@@ -272,10 +276,11 @@ Import Paprika recipes into ${RECIPE_DIR}/
   npm run import -- <file-or-directory>... [options]
 
 Options
-  -f, --force     overwrite recipes that have already been imported
-  -n, --dry-run   report what would happen without writing anything
-      --out DIR   write markdown somewhere other than ${RECIPE_DIR}
-  -h, --help      show this message
+  -f, --force       overwrite recipes that have already been imported
+  -n, --dry-run     report what would happen without writing anything
+      --out DIR     write markdown somewhere other than ${RECIPE_DIR}
+      --images DIR  save photos somewhere other than ${IMAGE_DIR}
+  -h, --help        show this message
 
 Accepts .paprikarecipes bundles, single .paprikarecipe files, or a directory
 containing either.
