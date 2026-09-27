@@ -26,8 +26,11 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
-      await cache.addAll(CORE);
-      await Promise.allSettled(RECIPES.map((url) => cache.add(url)));
+      // 'reload' skips the browser's HTTP cache, so a new version never saves
+      // stale copies of files it is meant to replace.
+      const fresh = (url) => new Request(url, { cache: 'reload' });
+      await cache.addAll(CORE.map(fresh));
+      await Promise.allSettled(RECIPES.map((url) => cache.add(fresh(url))));
       await self.skipWaiting();
     })()
   );
@@ -64,7 +67,9 @@ async function networkFirst(request, url) {
   const key = isPage ? `${url.origin}${url.pathname}` : request;
 
   try {
-    const response = await fetch(request);
+    // Always check with the server (a cheap 304 when nothing changed) rather
+    // than trusting however long the host lets the HTTP cache keep things.
+    const response = await fetch(request, { cache: 'no-cache' });
     // Safari refuses redirected responses for navigations, so never store them.
     if (response.ok && !response.redirected) await cache.put(key, response.clone());
     return response;
