@@ -5,9 +5,16 @@ eleventyExcludeFromCollections: true
 # Response headers. Netlify and Cloudflare Pages both read this file from the
 # root of the published site.
 
+# Security, after iamcarrico.com. Every script, style, image and font is
+# self-hosted and nothing is inline, so the policy can be strict 'self'.
 /*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  Strict-Transport-Security: max-age=31536000
 {%- if site.private %}
   X-Robots-Tag: {{ site.robotsDirectives }}
   tdm-reservation: 1
