@@ -99,7 +99,8 @@ const UNIT_PREFIXES = ['fluid', 'fl'];
  */
 export function parseNumber(token) {
   if (!token) return null;
-  const text = String(token).trim();
+  // "1 1/ 2" and "3 / 4" are typos worth tolerating, not reasons to skip scaling.
+  const text = String(token).trim().replace(/\s*\/\s*/g, '/');
   if (!text) return null;
 
   let total = 0;
