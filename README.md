@@ -19,6 +19,7 @@ That serves the site at <http://localhost:8080> and rebuilds as you edit.
 | `npm run build` | Production build into `_site/` |
 | `npm run import` | Import recipes from a Paprika export |
 | `npm run icons` | Regenerate the home-screen icons from the favicon |
+| `npm test` | Run the unit tests |
 | `npm run clean` | Delete build output |
 
 ## Adding a recipe
@@ -147,6 +148,14 @@ src/
 lib/                       Build-time helpers and the Paprika reader
 scripts/import-paprika.js  Import CLI
 ```
+
+## Tests and CI
+
+`npm test` runs the unit tests with Node's built-in test runner: quantity
+parsing and scaling, section headings, nutrition trimming, timers, search
+folding, front-matter checks, and a full Paprika import. GitHub Actions runs
+the tests and the full build (which includes the recipe checks) on every push
+and pull request.
 
 ## Deploying
 
