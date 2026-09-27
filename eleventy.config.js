@@ -14,6 +14,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/assets/js': 'assets/js' });
   eleventyConfig.addPassthroughCopy({ 'src/assets/images': 'assets/images' });
   eleventyConfig.addPassthroughCopy({ 'src/assets/icons': 'assets/icons' });
+  eleventyConfig.addPassthroughCopy({ 'src/favicon.ico': 'favicon.ico' });
 
   // Sass is compiled by its own npm script; watch the output so `eleventy
   // --serve` reloads when styles change.
