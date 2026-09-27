@@ -18,6 +18,7 @@ import yaml from 'js-yaml';
 
 import { readPaprikaFile, splitSteps, splitLines, imageExtension } from '../lib/paprika.js';
 import { slugify } from '../lib/slug.js';
+import { macrosOnly } from '../lib/nutrition.js';
 
 const RECIPE_DIR = 'src/recipes';
 const IMAGE_DIR = 'src/assets/images/recipes';
@@ -125,7 +126,8 @@ function buildFrontMatter(recipe, { title, image }) {
     source: clean(recipe.source),
     sourceUrl: clean(recipe.source_url),
     created: clean(recipe.created)?.slice(0, 10),
-    nutrition: clean(recipe.nutritional_info),
+    // Only the macros; diet labels, sodium, vitamins and footnotes are dropped.
+    nutrition: macrosOnly(recipe.nutritional_info),
     ingredients,
     directions
   };
