@@ -42,6 +42,13 @@ ogType: article
       {% endif %}
     </dl>
     {% endif %}
+
+    <div class="recipe__tools" data-recipe-tools>
+      <button type="button" class="tool-button" data-checks-reset hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5" /></svg>
+        Clear checkmarks
+      </button>
+    </div>
   </header>
 
   {% if image %}
@@ -69,22 +76,29 @@ ogType: article
       </div>
 
       {% for section in ingredientSections %}
+        {% set sectionIndex = loop.index0 %}
         {% if section.title %}
           <h3 class="ingredients__heading">{{ section.title | inlineMarkdown | safe }}</h3>
         {% endif %}
         <ul class="ingredients">
           {% for item in section.items %}
+            {# The whole row is the label, so a tap anywhere ticks it off. #}
             <li class="ingredient">
-              {% if item.quantity %}
-                <span
-                  class="ingredient__amount"
-                  data-amount
-                  data-qty="{{ item.quantity }}"
-                  {% if item.quantityMax %}data-qty-max="{{ item.quantityMax }}"{% endif %}
-                  data-unit="{{ item.unit }}"
-                >{{ item | formatAmount(1) }}</span>
-              {% endif %}
-              <span class="ingredient__name">{{ item.name | inlineMarkdown | safe }}</span>
+              <label class="ingredient__row">
+                <input type="checkbox" class="check" data-check="i{{ sectionIndex }}-{{ loop.index0 }}">
+                <span class="ingredient__text">
+                  {% if item.quantity %}
+                    <span
+                      class="ingredient__amount"
+                      data-amount
+                      data-qty="{{ item.quantity }}"
+                      {% if item.quantityMax %}data-qty-max="{{ item.quantityMax }}"{% endif %}
+                      data-unit="{{ item.unit }}"
+                    >{{ item | formatAmount(1) }}</span>
+                  {% endif %}
+                  <span class="ingredient__name">{{ item.name | inlineMarkdown | safe }}</span>
+                </span>
+              </label>
             </li>
           {% endfor %}
         </ul>
@@ -100,13 +114,27 @@ ogType: article
       </p>
 
       {% for section in directionSections %}
+        {% set sectionIndex = loop.index0 %}
         {% if section.title %}
           <h3 class="directions__heading">{{ section.title | inlineMarkdown | safe }}</h3>
         {% endif %}
         {# Each section is its own list, so numbering restarts at 1. #}
         <ol class="directions">
           {% for step in section.items %}
-            <li><div>{{ step | inlineMarkdown | safe }}</div></li>
+            {#
+              The step number is the toggle. Steps can hold timer buttons, and
+              a button can't live inside a <label>, so steps don't use one.
+            #}
+            <li class="step" data-step>
+              <button
+                type="button"
+                class="step__check"
+                data-check="s{{ sectionIndex }}-{{ loop.index0 }}"
+                aria-pressed="false"
+                aria-label="Step {{ loop.index }} done"
+              ><span class="step__number">{{ loop.index }}</span></button>
+              <div class="step__text">{{ step | inlineMarkdown | safe }}</div>
+            </li>
           {% endfor %}
         </ol>
       {% endfor %}
