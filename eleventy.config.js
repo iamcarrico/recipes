@@ -3,6 +3,7 @@ import { parseIngredients, parseServings, ingredientLines } from './lib/ingredie
 import { parseDirections } from './lib/directions.js';
 import { recipeSchema } from './lib/schema.js';
 import { stripMarkdown } from './lib/sections.js';
+import { timerize } from './lib/timers.js';
 import { foldForSearch } from './src/assets/js/text.js';
 import { formatAmount, formatQuantity } from './src/assets/js/quantity.js';
 
@@ -27,6 +28,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('parseDirections', parseDirections);
   eleventyConfig.addFilter('inlineMarkdown', (text) => inlineMarkdown.renderInline(String(text ?? '')));
   eleventyConfig.addFilter('recipeSchema', recipeSchema);
+  eleventyConfig.addFilter('timerize', timerize);
   eleventyConfig.addFilter('formatAmount', formatAmount);
   eleventyConfig.addFilter('formatQuantity', formatQuantity);
 

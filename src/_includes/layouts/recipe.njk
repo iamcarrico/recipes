@@ -137,7 +137,7 @@ ogType: article
                 aria-pressed="false"
                 aria-label="Step {{ loop.index }} done"
               ><span class="step__number">{{ loop.index }}</span></button>
-              <div class="step__text">{{ step | inlineMarkdown | safe }}</div>
+              <div class="step__text">{{ step | inlineMarkdown | timerize | safe }}</div>
             </li>
           {% endfor %}
         </ol>
