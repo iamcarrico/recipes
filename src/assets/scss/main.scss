@@ -16,3 +16,6 @@
 @use "components/recipe";
 @use "components/ingredients";
 @use "components/timers";
+
+// Last, so print overrides everything above.
+@use "components/print";

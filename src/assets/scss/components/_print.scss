@@ -1,0 +1,128 @@
+@use "../abstracts/tokens" as *;
+
+// A clean, ink-friendly recipe on paper. Scaled amounts print as scaled, and
+// checkboxes print empty so the copy can be ticked off by hand.
+@media print {
+  // Always print light, whatever the screen theme. These match the dark
+  // selectors' specificity and come later, so they win.
+  :root:not([data-theme]),
+  :root[data-theme] {
+    @include light-palette;
+  }
+
+  @page {
+    margin: 1.5cm;
+  }
+
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+
+  body.has-timers {
+    padding-bottom: 0;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .recipe__eyebrow,
+  .recipe__tags,
+  .recipe__tools,
+  .recipe__figure,
+  .recipe__nutrition,
+  .scaler,
+  .timer-tray {
+    display: none !important;
+  }
+
+  .recipe__header {
+    padding-top: 0;
+  }
+
+  .recipe__grid {
+    display: block;
+  }
+
+  .recipe__ingredients {
+    position: static;
+    margin-bottom: var(--space-lg);
+  }
+
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  .ingredient,
+  .step {
+    break-inside: avoid;
+  }
+
+  .ingredient__amount {
+    color: inherit;
+  }
+
+  // Empty circles to tick with a pen, whatever was ticked on screen.
+  .check,
+  .check:checked {
+    background: none;
+    border-color: #000;
+    box-shadow: none;
+  }
+
+  .check:checked + .ingredient__text {
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  .step__check,
+  .step.is-done .step__check {
+    background: none;
+    border: 1.5px solid #000;
+    color: #000;
+  }
+
+  .step.is-done {
+    .step__check::after {
+      content: none;
+    }
+
+    .step__number {
+      display: inline;
+    }
+
+    .step__text {
+      opacity: 1;
+    }
+  }
+
+  .timer-chip,
+  .timer-chip.is-running {
+    padding: 0;
+    background: none;
+    color: inherit;
+    font-weight: inherit;
+
+    svg {
+      display: none;
+    }
+  }
+
+  .recipe__notes {
+    padding: 0;
+    background: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  // Paper can't click: spell out where the recipe came from.
+  .recipe__source a::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    word-break: break-all;
+  }
+}

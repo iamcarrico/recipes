@@ -10,6 +10,13 @@ initChecklist();
 initWakeLock();
 initTimers();
 
+// Printing: the home-screen app has no browser menu to print from.
+const printButton = document.querySelector('[data-print]');
+if (printButton && typeof window.print === 'function') {
+  printButton.hidden = false;
+  printButton.addEventListener('click', () => window.print());
+}
+
 // Save the site for offline use and let it run as a home-screen app.
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

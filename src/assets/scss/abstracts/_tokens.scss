@@ -5,9 +5,9 @@ $bp-sm: 34rem;
 $bp-md: 48rem;
 $bp-lg: 64rem;
 
-:root {
-  // Bright, warm palette: cream paper, one hot accent, one sunny highlight.
-  // Dark values live in the dark-palette mixin at the bottom of this file.
+// Bright, warm palette: cream paper, one hot accent, one sunny highlight.
+// A mixin so print can force it even when the screen is in dark mode.
+@mixin light-palette {
   color-scheme: light;
   --color-bg: #fffaf5;
   --color-surface: #ffffff;
@@ -26,6 +26,12 @@ $bp-lg: 64rem;
   --color-highlight-soft: #fff6e0;
   --color-note: #fff8e9;
   --color-flash: #ffe9a8;
+  --shadow-sm: 0 1px 2px rgb(43 33 24 / 6%), 0 2px 8px rgb(43 33 24 / 4%);
+  --shadow-md: 0 4px 12px rgb(43 33 24 / 8%), 0 12px 32px rgb(43 33 24 / 8%);
+}
+
+:root {
+  @include light-palette;
 
   --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
@@ -50,8 +56,6 @@ $bp-lg: 64rem;
   --radius-lg: 1.4rem;
   --radius-pill: 999px;
 
-  --shadow-sm: 0 1px 2px rgb(43 33 24 / 6%), 0 2px 8px rgb(43 33 24 / 4%);
-  --shadow-md: 0 4px 12px rgb(43 33 24 / 8%), 0 12px 32px rgb(43 33 24 / 8%);
 
   --wrap: 68rem;
   --wrap-narrow: 42rem;

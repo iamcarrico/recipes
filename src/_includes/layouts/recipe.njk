@@ -48,6 +48,11 @@ ogType: article
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6.5" y="2" width="11" height="20" rx="2.5" /><path d="M10.5 18.5h3" /></svg>
         Keep screen on
       </button>
+      {# The home-screen app has no browser menu, so printing needs a button. #}
+      <button type="button" class="tool-button" data-print hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6" /><rect x="3" y="9" width="18" height="8" rx="2" /><path d="M7 14h10v7H7z" /></svg>
+        Print
+      </button>
       <button type="button" class="tool-button" data-checks-reset hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5" /></svg>
         Clear checkmarks
