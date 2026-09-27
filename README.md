@@ -139,6 +139,10 @@ scripts/import-paprika.js  Import CLI
 
 ## Deploying
 
+The site lives at **https://recipe.carri.co**. That address is set in
+`src/_data/site.js` (override with a `SITE_URL` environment variable) and is
+used for absolute links such as link-preview images.
+
 The build is a static folder, so any host works.
 
 - **Netlify** — `netlify.toml` is committed; connect the repo and it builds.

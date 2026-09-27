@@ -5,8 +5,10 @@ export default {
   tagline: 'The ones we actually cook.',
   description:
     'A small, searchable collection of the Carrico family’s favorite recipes.',
-  // Netlify and Cloudflare Pages both expose the deploy URL at build time.
-  url: process.env.URL || process.env.CF_PAGES_URL || 'http://localhost:8080',
+  // The canonical address, used for absolute links such as link-preview
+  // images. Not the host's per-deploy URL (Cloudflare's CF_PAGES_URL is a
+  // throwaway *.pages.dev address); override with SITE_URL if it moves.
+  url: process.env.SITE_URL || 'https://recipe.carri.co',
   author: 'Ian Carrico',
   // Keep the site out of search engines and AI training. Drives robots.txt,
   // the robots meta tag, X-Robots-Tag headers and TDM opt-out signals, and
