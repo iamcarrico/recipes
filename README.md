@@ -84,7 +84,7 @@ inline markdown generally (`**bold**`, `*italic*`); raw HTML is escaped.
 ### Tags
 
 Tags drive the filter buttons on the homepage, and they come from a short,
-fixed list in `src/_data/tags.js`: Breakfast, Dinner, Side, Dessert,
+fixed list in `src/_data/allowedTags.js`: Breakfast, Dinner, Side, Dessert,
 Thanksgiving, Pantry. Anything else fails the build (with a "did you mean"
 for near misses like `dessert` or `Desert`), which keeps the filters short.
 To add a tag, add it to that list first.

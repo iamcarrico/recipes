@@ -19,7 +19,7 @@ import yaml from 'js-yaml';
 import { readPaprikaFile, splitSteps, splitLines, imageExtension } from '../lib/paprika.js';
 import { slugify } from '../lib/slug.js';
 import { macrosOnly } from '../lib/nutrition.js';
-import allowedTags from '../src/_data/tags.js';
+import allowedTags from '../src/_data/allowedTags.js';
 
 const RECIPE_DIR = 'src/recipes';
 const IMAGE_DIR = 'src/assets/images/recipes';

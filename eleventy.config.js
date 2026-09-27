@@ -6,7 +6,7 @@ import { stripMarkdown } from './lib/sections.js';
 import { timerize } from './lib/timers.js';
 import { validateRecipeFile } from './lib/validate.js';
 import { versioned } from './lib/versioned.js';
-import allowedTags from './src/_data/tags.js';
+import allowedTags from './src/_data/allowedTags.js';
 import { foldForSearch } from './src/assets/js/text.js';
 import { formatAmount, formatQuantity } from './src/assets/js/quantity.js';
 
