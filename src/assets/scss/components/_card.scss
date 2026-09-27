@@ -2,14 +2,15 @@
 
 .card-grid {
   display: grid;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+
+  @media (min-width: $bp-sm) {
+    gap: var(--space-md);
+  }
 }
 
 .card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
   height: 100%;
   background: var(--color-surface);
   border: 1px solid var(--color-line);
@@ -18,9 +19,16 @@
   box-shadow: var(--shadow-sm);
   transition: transform 180ms ease, box-shadow 180ms ease;
 
-  &:hover,
+  // Only lift on devices that really hover; on touch screens the lift sticks
+  // after a tap.
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+  }
+
   &:focus-within {
-    transform: translateY(-3px);
     box-shadow: var(--shadow-md);
   }
 
@@ -29,16 +37,22 @@
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    height: 100%;
   }
 
+  // The photo is pinned inside a fixed-ratio frame. Letting the <img> size
+  // itself allowed square photos to stretch the frame and make cards uneven.
   &__media {
+    position: relative;
     aspect-ratio: 4 / 3;
+    overflow: hidden;
     background: linear-gradient(140deg, var(--color-accent-soft), #fff6e0);
     display: grid;
     place-items: center;
 
     img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -92,7 +106,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2xs);
-    padding: 0 var(--space-md) var(--space-md);
 
     li {
       font-size: 0.75rem;
@@ -101,6 +114,60 @@
       background: var(--color-accent-soft);
       color: var(--color-accent);
       font-weight: 600;
+    }
+  }
+
+  // Phones: a compact row with a thumbnail, so a screen shows several
+  // recipes instead of one.
+  @media (max-width: $bp-sm - 0.01rem) {
+    border-radius: var(--radius-md);
+
+    &__link {
+      flex-direction: row;
+    }
+
+    &__media {
+      flex: 0 0 6.5rem;
+      aspect-ratio: auto;
+      min-height: 6.5rem;
+    }
+
+    &__placeholder {
+      font-size: 1.75rem;
+    }
+
+    &__body {
+      padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-md);
+      gap: var(--space-2xs);
+      justify-content: center;
+    }
+
+    &__title {
+      font-size: var(--step-0);
+    }
+
+    &__description {
+      display: none;
+    }
+
+    &__meta {
+      margin-top: 0;
+      gap: var(--space-sm);
+
+      div {
+        display: flex;
+        gap: 0.35em;
+        align-items: baseline;
+      }
+
+      dd {
+        font-weight: 500;
+      }
+    }
+
+    &__tags li {
+      padding: 0.05rem 0.5rem;
+      font-size: 0.7rem;
     }
   }
 }

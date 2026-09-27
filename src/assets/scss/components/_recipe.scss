@@ -72,8 +72,12 @@
   &__figure {
     margin-block: var(--space-md) var(--space-xl);
 
+    // A fixed landscape crop, so a square photo doesn't push the ingredients
+    // below the first screen on a phone.
     img {
       width: 100%;
+      aspect-ratio: 3 / 2;
+      height: auto;
       max-height: 30rem;
       object-fit: cover;
       border-radius: var(--radius-lg);

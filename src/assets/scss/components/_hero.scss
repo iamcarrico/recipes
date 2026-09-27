@@ -1,3 +1,5 @@
+@use "../abstracts/tokens" as *;
+
 .hero {
   padding-block: var(--space-xl) var(--space-lg);
   background:
@@ -6,6 +8,17 @@
 
   &__title {
     max-width: 18ch;
+  }
+
+  // Phones: the header already names the site, so get straight to search.
+  // The heading stays for screen readers.
+  @media (max-width: $bp-sm - 0.01rem) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   &__tagline {

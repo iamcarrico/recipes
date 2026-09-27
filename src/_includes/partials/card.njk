@@ -35,17 +35,17 @@
           <div><dt>Time</dt><dd>{{ recipe.data.totalTime }}</dd></div>
         {% endif %}
         {% if recipe.data.servings %}
-          <div><dt>Serves</dt><dd>{{ recipe.data.servings }}</dd></div>
+          <div><dt>Yield</dt><dd>{{ recipe.data.servings }}</dd></div>
         {% endif %}
       </dl>
+
+      {% if recipe.data.tags | length %}
+        <ul class="card__tags">
+          {% for tag in recipe.data.tags %}
+            <li>{{ tag }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
     </div>
   </a>
-
-  {% if recipe.data.tags | length %}
-    <ul class="card__tags">
-      {% for tag in recipe.data.tags %}
-        <li>{{ tag }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
 </article>

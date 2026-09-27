@@ -13,6 +13,10 @@
     align-items: center;
     justify-content: space-between;
     padding-block: var(--space-sm);
+
+    @media (max-width: $bp-sm - 0.01rem) {
+      padding-block: var(--space-xs);
+    }
   }
 
   &__brand {
@@ -30,6 +34,11 @@
     height: auto;
     image-rendering: pixelated;
     flex-shrink: 0;
+
+    // 1x on phones: still whole device pixels on 2x and 3x screens.
+    @media (max-width: $bp-sm - 0.01rem) {
+      width: 32px;
+    }
   }
 
   &__title {
@@ -43,5 +52,9 @@
     display: block;
     font-size: var(--step--1);
     color: var(--color-ink-soft);
+
+    @media (max-width: $bp-sm - 0.01rem) {
+      display: none;
+    }
   }
 }

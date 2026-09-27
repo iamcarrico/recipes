@@ -20,13 +20,14 @@ ogType: article
       </ul>
     {% endif %}
 
+    {% if prepTime or cookTime or totalTime or yield %}
     <dl class="recipe__facts">
       {% if prepTime %}<div><dt>Prep</dt><dd>{{ prepTime }}</dd></div>{% endif %}
       {% if cookTime %}<div><dt>Cook</dt><dd>{{ cookTime }}</dd></div>{% endif %}
       {% if totalTime %}<div><dt>Total</dt><dd>{{ totalTime }}</dd></div>{% endif %}
       {% if yield %}
         <div>
-          <dt>Makes</dt>
+          <dt>Yield</dt>
           <dd>
             <span
               data-servings
@@ -40,6 +41,7 @@ ogType: article
         </div>
       {% endif %}
     </dl>
+    {% endif %}
   </header>
 
   {% if image %}
