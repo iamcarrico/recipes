@@ -14,8 +14,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/assets/js': 'assets/js' });
   eleventyConfig.addPassthroughCopy({ 'src/assets/images': 'assets/images' });
   eleventyConfig.addPassthroughCopy({ 'src/assets/icons': 'assets/icons' });
-  // Cloudflare Pages reads headers from a file at the site root.
-  eleventyConfig.addPassthroughCopy({ '_headers': '_headers' });
+  // Netlify and Cloudflare Pages both read headers from a file at the site root.
+  eleventyConfig.addPassthroughCopy({ 'src/_headers': '_headers' });
 
   // Sass is compiled by its own npm script; watch the output so `eleventy
   // --serve` reloads when styles change.

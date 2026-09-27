@@ -1,0 +1,19 @@
+# Response headers. Netlify and Cloudflare Pages both read this file from the
+# root of the published site.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# CSS and JS keep the same URL between deploys, so browsers must revalidate
+# them. A long "immutable" lifetime would pin visitors to stale code.
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Photos and icons change rarely; a week is a fair trade.
+/assets/images/*
+  Cache-Control: public, max-age=604800
+/assets/icons/*
+  Cache-Control: public, max-age=604800

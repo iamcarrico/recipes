@@ -5,13 +5,5 @@
 [build.environment]
   NODE_VERSION = "24"
 
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
+# Response headers live in src/_headers, which Netlify and Cloudflare Pages
+# both read, so there is one copy to keep up to date.

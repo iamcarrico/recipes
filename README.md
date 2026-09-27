@@ -143,8 +143,8 @@ The build is a static folder, so any host works.
 - **Cloudflare Pages** — build command `npm run build`, output directory
   `_site`, and set `NODE_VERSION` to `24`.
 
-Both pick up the caching and security headers (`netlify.toml` for Netlify,
-`_headers` for Cloudflare).
+Both read caching and security headers from `src/_headers`, which is copied
+to the root of the build.
 
 ## Notes on the frontend
 
