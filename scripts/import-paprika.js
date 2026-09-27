@@ -19,6 +19,7 @@ import yaml from 'js-yaml';
 import { readPaprikaFile, splitSteps, splitLines, imageExtension } from '../lib/paprika.js';
 import { slugify } from '../lib/slug.js';
 import { macrosOnly } from '../lib/nutrition.js';
+import allowedTags from '../src/_data/tags.js';
 
 const RECIPE_DIR = 'src/recipes';
 const IMAGE_DIR = 'src/assets/images/recipes';
@@ -93,7 +94,8 @@ async function importRecipe(recipe, options) {
 
   const image = await saveImage(recipe, slug, options);
 
-  const frontMatter = buildFrontMatter(recipe, { title, image });
+  const { tags, unmatched } = matchTags(recipe.categories);
+  const frontMatter = buildFrontMatter(recipe, { title, image, tags });
   const body = String(recipe.notes ?? '').replace(/\r\n/g, '\n').trim();
   const document = `---\n${yaml.dump(frontMatter, { lineWidth: -1, noRefs: true })}---\n\n${body ? `${body}\n` : ''}`;
 
@@ -101,20 +103,21 @@ async function importRecipe(recipe, options) {
     await writeFile(markdownPath, document, 'utf8');
   }
 
-  return { status: 'written', message: `✓ ${title} → ${markdownPath}` };
+  const note = unmatched.length
+    ? ` (Paprika categories not in the tag list, left off: ${unmatched.join(', ')})`
+    : '';
+  return { status: 'written', message: `✓ ${title} → ${markdownPath}${note}` };
 }
 
 /** Build the YAML front matter, omitting anything Paprika left blank. */
-function buildFrontMatter(recipe, { title, image }) {
+function buildFrontMatter(recipe, { title, image, tags }) {
   const ingredients = splitLines(recipe.ingredients);
   const directions = splitSteps(recipe.directions);
 
   const data = {
     title,
     description: clean(recipe.description),
-    // Paprika has no tag concept we can rely on; categories are usually empty,
-    // so imports land untagged and get tagged by hand.
-    tags: Array.isArray(recipe.categories) ? recipe.categories.filter(Boolean) : [],
+    tags,
     servings: clean(recipe.servings),
     prepTime: clean(recipe.prep_time),
     cookTime: clean(recipe.cook_time),
@@ -142,6 +145,23 @@ function buildFrontMatter(recipe, { title, image }) {
   }
 
   return data;
+}
+
+/**
+ * Keep Paprika categories that match the site's tag list (any capitalisation)
+ * and report the rest, so an import never introduces a tag the build rejects.
+ */
+function matchTags(categories) {
+  const tags = [];
+  const unmatched = [];
+  for (const category of Array.isArray(categories) ? categories : []) {
+    const name = String(category ?? '').trim();
+    if (!name) continue;
+    const known = allowedTags.find((tag) => tag.toLowerCase() === name.toLowerCase());
+    if (known && !tags.includes(known)) tags.push(known);
+    else if (!known) unmatched.push(name);
+  }
+  return { tags, unmatched };
 }
 
 /** Write the embedded photo to disk and return its public URL. */

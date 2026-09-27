@@ -82,8 +82,18 @@ inline markdown generally (`**bold**`, `*italic*`); raw HTML is escaped.
 
 ### Tags
 
-Tags drive the filter buttons on the homepage. They're free-form — whatever you
-use shows up automatically, with a count, sorted by how often you use it.
+Tags drive the filter buttons on the homepage, and they come from a short,
+fixed list in `src/_data/tags.js`: Breakfast, Dinner, Side, Dessert,
+Thanksgiving, Pantry. Anything else fails the build (with a "did you mean"
+for near misses like `dessert` or `Desert`), which keeps the filters short.
+To add a tag, add it to that list first.
+
+### Checks
+
+Every build checks each recipe's front matter: a title, ingredients and
+directions are required; misspelled field names, broken links, bad dates,
+missing photos and unknown tags stop the build with a list of what to fix.
+A recipe with no tags only gets a warning.
 
 ## Importing from Paprika
 
@@ -104,8 +114,9 @@ macros — calories, fat, saturated fat, carbs, fiber, sugar and protein.
 | `--force` | Overwrite recipes that were already imported |
 | `--out DIR` | Write markdown somewhere other than `src/recipes/` |
 
-Imported recipes land **untagged** — Paprika's categories are usually empty, so
-tagging is a quick pass by hand afterward. Re-running the import skips files
+Paprika categories that match the tag list are kept (any capitalisation); the
+rest are reported and left off. Most exports have no categories, so tagging is
+usually a quick pass by hand afterward. Re-running the import skips files
 that already exist, so your edits and tags survive unless you pass `--force`.
 
 ## Scaling

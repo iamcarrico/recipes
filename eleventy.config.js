@@ -4,6 +4,8 @@ import { parseDirections } from './lib/directions.js';
 import { recipeSchema } from './lib/schema.js';
 import { stripMarkdown } from './lib/sections.js';
 import { timerize } from './lib/timers.js';
+import { validateRecipeFile } from './lib/validate.js';
+import allowedTags from './src/_data/tags.js';
 import { foldForSearch } from './src/assets/js/text.js';
 import { formatAmount, formatQuantity } from './src/assets/js/quantity.js';
 
@@ -82,12 +84,25 @@ export default function (eleventyConfig) {
     ...new Set(recipes.flatMap((recipe) => [recipe.url, recipe.data.image].filter(Boolean)))
   ]);
 
-  /** Every recipe, newest first. */
-  eleventyConfig.addCollection('recipes', (collectionApi) =>
-    collectionApi
-      .getFilteredByGlob('src/recipes/*.md')
-      .sort((a, b) => a.data.title.localeCompare(b.data.title))
-  );
+  /**
+   * Every recipe, A–Z. Also where the recipe files are checked: any problem
+   * stops the build with a list of what to fix.
+   */
+  eleventyConfig.addCollection('recipes', (collectionApi) => {
+    const recipes = collectionApi.getFilteredByGlob('src/recipes/*.md');
+
+    const problems = [];
+    for (const recipe of recipes) {
+      const { errors, warnings } = validateRecipeFile(recipe.inputPath, { tags: allowedTags, root: 'src' });
+      for (const warning of warnings) console.warn(`[recipes] ${recipe.inputPath}: ${warning}`);
+      for (const error of errors) problems.push(`  ${recipe.inputPath}: ${error}`);
+    }
+    if (problems.length) {
+      throw new Error(`Recipe files need fixing:\n${problems.join('\n')}`);
+    }
+
+    return recipes.sort((a, b) => a.data.title.localeCompare(b.data.title));
+  });
 
   /** Tags in use, with a count, most common first. */
   eleventyConfig.addCollection('recipeTags', (collectionApi) => {
