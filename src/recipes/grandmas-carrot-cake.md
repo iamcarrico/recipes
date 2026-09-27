@@ -1,5 +1,6 @@
 ---
 title: Grandma's Carrot Cake
+servings: 1 cake (three 8-inch layers)
 tags:
   - Dessert
 source: Grandma Carrico

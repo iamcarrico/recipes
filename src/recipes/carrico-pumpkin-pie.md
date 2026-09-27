@@ -3,7 +3,7 @@ title: Carrico Pumpkin Pie
 tags:
   - Dessert
   - Thanksgiving
-servings: 1 9-inch pie
+servings: 1 pie (9-inch)
 cookTime: 3 hr 50 min
 difficulty: Medium
 rating: 5
@@ -24,6 +24,7 @@ ingredients:
   - 1/8 teaspoon ground mace
   - 1/8 teaspoon freshly grated nutmeg
   - 1/2 teaspoon kosher salt
+  - '**Custard**'
   - 3/4 cup dark brown sugar
   - 2 large eggs
   - 1 large egg yolk

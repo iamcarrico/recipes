@@ -1,5 +1,6 @@
 ---
 title: Red Velvet Cake
+servings: 1 cake (three 9-inch layers)
 tags:
   - Dessert
 source: Stacey Miller
