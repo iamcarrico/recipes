@@ -12,26 +12,13 @@ source: seriouseats.com
 sourceUrl: https://www.seriouseats.com/southern-unsweetened-cornbread-recipe
 created: '2025-11-22'
 nutrition: |-
-  (per serving)
-  149 Calories 13g Fat 5g Carbs 4g Protein
-  Nutrition Facts
-  Servings: 12
-  Amount per serving
   Calories 149
-  % Daily Value*
   Total Fat 13g 17%
   Saturated Fat 8g 39%
-  Cholesterol 79mg 26%
-  Sodium 487mg 21%
   Total Carbohydrate 5g 2%
   Dietary Fiber 0g 1%
   Total Sugars 3g
   Protein 4g
-  Vitamin C 1mg 3%
-  Calcium 115mg 9%
-  Iron 0mg 2%
-  Potassium 105mg 2%
-  *The % Daily Value (DV) tells you how much a nutrient in a food serving contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
 ingredients:
   - 15 ounces (3 cups) stone-ground cornmeal (see notes)
   - 2 teaspoons kosher salt

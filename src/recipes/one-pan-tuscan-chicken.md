@@ -11,20 +11,6 @@ source: thekitchn.com
 sourceUrl: https://www.thekitchn.com/tuscan-chicken-recipe-23624913
 created: '2025-01-30'
 nutrition: |-
-  tree-nut-free
-  gluten-free
-  soy-free
-  red-meat-free
-  shellfish-free
-  fish-free
-  alcohol-free
-  pork-free
-  egg-free
-  sulphite-free
-  wheat-free
-  sugar-conscious
-  peanut-free
-  low-carb
   Calories 612
   Fat 44.1 g (67.9%)
   Saturated 20.6 g (103.2%)
@@ -32,7 +18,6 @@ nutrition: |-
   Fiber 1.9 g (7.6%)
   Sugars 3.0 g
   Protein 44.6 g (89.1%)
-  Sodium 722.4 mg (30.1%)
 ingredients:
   - 1 small yellow onion
   - 3 cloves garlic

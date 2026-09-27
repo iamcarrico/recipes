@@ -8,7 +8,6 @@ imageAlt: Caramel Sauce
 source: Bon Appetit
 sourceUrl: https://www.bonappetit.com/test-kitchen/article/how-to-make-caramel-video
 created: '2019-11-28'
-nutrition: Bad.
 ingredients:
   - 1 c Sugar
   - 3 T Water

@@ -12,15 +12,6 @@ source: thekitchn.com
 sourceUrl: https://www.thekitchn.com/chicken-spinach-recipe-23571473
 created: '2025-04-18'
 nutrition: |-
-  red-meat-free
-  fish-free
-  tree-nut-free
-  sugar-conscious
-  egg-free
-  alcohol-free
-  pork-free
-  shellfish-free
-  peanut-free
   Calories 517
   Fat 27.2 g (41.8%)
   Saturated 11.9 g (59.4%)
@@ -28,7 +19,6 @@ nutrition: |-
   Fiber 2.4 g (9.6%)
   Sugars 3.1 g
   Protein 33.4 g (66.9%)
-  Sodium 754.4 mg (31.4%)
 ingredients:
   - 1 medium yellow onion
   - 4 cloves garlic

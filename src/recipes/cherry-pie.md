@@ -12,17 +12,6 @@ source: thekitchn.com
 sourceUrl: https://www.thekitchn.com/cherry-pie-22903045
 created: '2020-05-24'
 nutrition: |-
-  shellfish-free
-  kidney-friendly
-  fish-free
-  alcohol-free
-  vegetarian
-  peanut-free
-  pork-free
-  pescatarian
-  tree-nut-free
-  soy-free
-  red-meat-free
   Calories 396
   Fat 14.3 g (21.9%)
   Saturated 5.3 g (26.6%)
@@ -30,7 +19,6 @@ nutrition: |-
   Fiber 2.3 g (9.1%)
   Sugars 33.3 g
   Protein 2.9 g (5.8%)
-  Sodium 288.6 mg (12.0%)
 ingredients:
   - '**For the filling:**'
   - 3/4 cup granulated sugar

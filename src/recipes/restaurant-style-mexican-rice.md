@@ -10,14 +10,11 @@ sourceUrl: https://www.thekitchn.com/recipe-mexican-rice-recipes-from-the-kitchn
 created: '2018-07-07'
 nutrition: |-
   Calories: 403
-  Total Carbohydrates: 61.7 g (20.6%)
-  Cholesterol: 2.4 mg (0.8%)
   Total Fat: 13.9 g (21.3%)
-  Protein: 7.8 g (15.5%)
   Saturated fat: 1.3 g (6.6%)
-  Per serving, based on 6 servings. (% daily value)
+  Total Carbohydrates: 61.7 g (20.6%)
   Sugar: 5.5 g
-  Unsaturated fat: 0 g
+  Protein: 7.8 g (15.5%)
 ingredients:
   - 1 (28-ounce) can whole peeled tomatoes
   - 1 medium onion, peeled and roughly chopped

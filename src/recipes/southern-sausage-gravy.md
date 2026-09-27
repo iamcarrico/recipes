@@ -9,15 +9,6 @@ source: thekitchn.com
 sourceUrl: https://www.thekitchn.com/breakfast-recipe-southern-sausage-gravy-recipes-from-the-kitchn-174453
 created: '2023-12-24'
 nutrition: |-
-  shellfish-free
-  low-carb
-  fish-free
-  alcohol-free
-  peanut-free
-  sugar-conscious
-  tree-nut-free
-  soy-free
-  egg-free
   Calories 260
   Fat 18.1 g (27.9%)
   Saturated 6.0 g (30.1%)
@@ -25,7 +16,6 @@ nutrition: |-
   Fiber 0.4 g (1.6%)
   Sugars 3.9 g
   Protein 12.0 g (23.9%)
-  Sodium 519.2 mg (21.6%)
 ingredients:
   - 1 pound bulk pork sausage
   - 1/4 cup all-purpose flour

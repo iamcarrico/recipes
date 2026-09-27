@@ -95,7 +95,8 @@ npm run import -- ~/Downloads/All\ Recipes.paprikarecipes
 ```
 
 It writes one markdown file per recipe into `src/recipes/` and saves each
-embedded photo into `src/assets/images/recipes/`.
+embedded photo into `src/assets/images/recipes/`. Nutrition is trimmed to the
+macros — calories, fat, saturated fat, carbs, fiber, sugar and protein.
 
 | Flag | Effect |
 | --- | --- |

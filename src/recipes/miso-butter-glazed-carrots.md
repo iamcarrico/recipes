@@ -12,18 +12,6 @@ source: thekitchn.com
 sourceUrl: https://www.thekitchn.com/miso-butter-glazed-carrots-recipe-23635814
 created: '2025-04-18'
 nutrition: |-
-  red-meat-free
-  tree-nut-free
-  vegetarian
-  wheat-free
-  pescatarian
-  shellfish-free
-  alcohol-free
-  egg-free
-  gluten-free
-  pork-free
-  fish-free
-  peanut-free
   Calories 164
   Fat 8.4 g (12.9%)
   Saturated 4.9 g (24.4%)
@@ -31,7 +19,6 @@ nutrition: |-
   Fiber 4.6 g (18.5%)
   Sugars 13.3 g
   Protein 2.3 g (4.6%)
-  Sodium 317.8 mg (13.2%)
 ingredients:
   - 2 pounds carrots
   - 1 medium scallion

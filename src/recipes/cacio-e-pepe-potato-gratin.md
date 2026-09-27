@@ -12,20 +12,6 @@ source: thekitchn.com
 sourceUrl: https://www.thekitchn.com/cacio-e-pepe-potato-gratin-recipe-23603057
 created: '2025-04-18'
 nutrition: |-
-  gluten-free
-  pescatarian
-  pork-free
-  alcohol-free
-  vegetarian
-  wheat-free
-  sulphite-free
-  tree-nut-free
-  soy-free
-  peanut-free
-  shellfish-free
-  red-meat-free
-  fish-free
-  egg-free
   Calories 472
   Fat 30.3 g (46.6%)
   Saturated 19.2 g (95.9%)
@@ -33,7 +19,6 @@ nutrition: |-
   Fiber 4.7 g (18.8%)
   Sugars 4.3 g
   Protein 12.9 g (25.8%)
-  Sodium 700.0 mg (29.2%)
 ingredients:
   - 1 1/2 cups finely grated Pecorino Romano cheese (about 6 ounces), divided
   - 3 1/2 pounds Yukon Gold potatoes

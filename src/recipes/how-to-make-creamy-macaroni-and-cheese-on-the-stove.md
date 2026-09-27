@@ -16,7 +16,6 @@ nutrition: |-
   Fiber 2.5 g (10.0%)
   Sugars 5.2 g
   Protein 23.5 g (46.9%)
-  Sodium 433.7 mg (18.1%)
 ingredients:
   - 1 pound dried short pasta, such as macaroni
   - 1 1/2 cups whole or 2% milk, divided

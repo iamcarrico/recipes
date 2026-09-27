@@ -11,14 +11,6 @@ source: thekitchn.com
 sourceUrl: https://www.thekitchn.com/how-to-make-crispy-juicy-fried-chicken-that-s-better-than-kfc-242602
 created: '2026-08-15'
 nutrition: |-
-  soy-free
-  sugar-conscious
-  shellfish-free
-  fish-free
-  low-carb
-  red-meat-free
-  pork-free
-  tree-nut-free
   Calories 1052
   Fat 77.8 g (99.6%)
   Saturated 11.4 g (48.7%)
@@ -26,7 +18,6 @@ nutrition: |-
   Fiber 3.4 g (9.0%)
   Sugars 3.9 g
   Protein 37.9 g (32.4%)
-  Sodium 837.6 mg (55.8%)
 ingredients:
   - 8 pieces bone-in chicken, preferably drumsticks and thighs
   - 1 tablespoon plus 1 1/2 teaspoons kosher salt, divided
