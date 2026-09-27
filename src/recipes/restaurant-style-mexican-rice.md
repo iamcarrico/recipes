@@ -1,6 +1,7 @@
 ---
 title: Restaurant-Style Mexican Rice
-tags: []
+tags:
+  - Side
 servings: Serves 6 to 8
 image: /assets/images/recipes/restaurant-style-mexican-rice.jpg
 imageAlt: Restaurant-Style Mexican Rice

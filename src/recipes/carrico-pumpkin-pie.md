@@ -2,7 +2,7 @@
 title: Carrico Pumpkin Pie
 tags:
   - Dessert
-  - Thanksgiving 2025
+  - Thanksgiving
 servings: 1 9-inch pie
 cookTime: 3 hr 50 min
 difficulty: Medium

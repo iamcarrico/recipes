@@ -1,6 +1,7 @@
 ---
 title: One-Pan Tuscan Chicken
-tags: []
+tags:
+  - Dinner
 servings: '4'
 prepTime: 15 minutes
 cookTime: 30 minutes to 35 minutes

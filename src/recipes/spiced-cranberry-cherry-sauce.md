@@ -1,7 +1,8 @@
 ---
 title: Spiced Cranberry-Cherry Sauce
 tags:
-  - Thanksgiving 2025
+  - Side
+  - Thanksgiving
 source: Claude
 created: '2025-11-22'
 ingredients:

@@ -1,6 +1,7 @@
 ---
 title: Miso Butter Glazed Carrots
-tags: []
+tags:
+  - Side
 servings: 4 to 6
 prepTime: 15 minutes
 cookTime: 35 minutes

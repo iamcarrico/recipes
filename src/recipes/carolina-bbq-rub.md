@@ -1,7 +1,8 @@
 ---
 title: Carolina BBQ Rub
 description: Double to fill mason jar
-tags: []
+tags:
+  - Pantry
 servings: 8 oz
 image: /assets/images/recipes/carolina-bbq-rub.jpg
 imageAlt: Carolina BBQ Rub

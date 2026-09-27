@@ -1,7 +1,8 @@
 ---
 title: Southern-Style Unsweetened Cornbread
 tags:
-  - Thanksgiving 2025
+  - Side
+  - Thanksgiving
 servings: 12 servings
 prepTime: 5 mins
 cookTime: 50 mins

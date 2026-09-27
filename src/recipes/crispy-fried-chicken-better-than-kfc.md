@@ -1,6 +1,7 @@
 ---
 title: Crispy Fried Chicken (Better Than KFC!)
-tags: []
+tags:
+  - Dinner
 servings: '6'
 prepTime: 45 minutes
 cookTime: 45 minutes

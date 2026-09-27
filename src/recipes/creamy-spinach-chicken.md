@@ -1,6 +1,7 @@
 ---
 title: Creamy Spinach Chicken
-tags: []
+tags:
+  - Dinner
 servings: 3 to 4
 prepTime: 10 minutes
 cookTime: 25 minutes

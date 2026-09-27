@@ -1,8 +1,8 @@
 ---
 title: Creamy Baked Macaroni and Cheese
 tags:
-  - Thanksgiving 2025
-  - Turkey Day 2021
+  - Side
+  - Thanksgiving
 servings: Yield 6 to 8 servings
 cookTime: 1 hour
 image: /assets/images/recipes/creamy-baked-macaroni-and-cheese.jpg

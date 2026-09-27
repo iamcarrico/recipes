@@ -1,6 +1,7 @@
 ---
 title: Cherry Pie
-tags: []
+tags:
+  - Dessert
 servings: Serves 8
 prepTime: 25 minutes
 cookTime: 40 minutes to 45 minutes

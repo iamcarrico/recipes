@@ -1,6 +1,7 @@
 ---
 title: Southern Sausage Gravy
-tags: []
+tags:
+  - Breakfast
 servings: '8'
 image: /assets/images/recipes/southern-sausage-gravy.jpg
 imageAlt: Southern Sausage Gravy

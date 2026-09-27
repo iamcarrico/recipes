@@ -1,7 +1,8 @@
 ---
 title: Sweet Potato and Carrot Puree
 tags:
-  - Thanksgiving 2025
+  - Side
+  - Thanksgiving
 source: (Tony Lance) Adapted from Silver Palate Cookbook By Julee Rosso and Sheila Lukins
 created: '2025-11-22'
 ingredients:

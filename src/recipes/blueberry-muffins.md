@@ -1,7 +1,7 @@
 ---
 title: Blueberry Muffins
 tags:
-  - Breakfast/Brunch
+  - Breakfast
 servings: 12 muffins
 difficulty: Easy
 rating: 5

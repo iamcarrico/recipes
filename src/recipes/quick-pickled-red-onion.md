@@ -1,6 +1,7 @@
 ---
 title: Quick Pickled Red Onion
-tags: []
+tags:
+  - Pantry
 servings: 2 cups (with pickling liquid)
 prepTime: 5 min
 cookTime: 45 min

@@ -1,6 +1,7 @@
 ---
 title: Cacio E Pepe Potato Gratin
-tags: []
+tags:
+  - Side
 servings: '8'
 prepTime: 30 minutes
 cookTime: 1 hour 20 minutes

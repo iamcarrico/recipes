@@ -1,6 +1,7 @@
 ---
 title: Carrico Biscuits
-tags: []
+tags:
+  - Breakfast
 servings: '6'
 prepTime: 10 minutes
 cookTime: 10 minutes

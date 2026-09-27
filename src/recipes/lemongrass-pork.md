@@ -1,6 +1,7 @@
 ---
 title: Lemongrass Pork
-tags: []
+tags:
+  - Dinner
 source: Jasmine Vu
 created: '2018-01-04'
 ingredients:
