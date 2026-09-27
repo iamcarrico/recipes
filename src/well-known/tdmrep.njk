@@ -1,0 +1,6 @@
+---
+permalink: /.well-known/tdmrep.json
+eleventyExcludeFromCollections: true
+---
+{#- W3C TDM Reservation Protocol: a machine-readable text-and-data-mining opt-out. -#}
+[{ "location": "/", "tdm-reservation": {{ 1 if site.private else 0 }} }]

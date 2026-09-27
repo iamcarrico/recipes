@@ -146,6 +146,25 @@ The build is a static folder, so any host works.
 Both read caching and security headers from `src/_headers`, which is copied
 to the root of the build.
 
+## Privacy: search engines and AI crawlers
+
+`private: true` in `src/_data/site.js` keeps the site out of search results and
+opts it out of AI training. With it on, the build:
+
+- serves a `robots.txt` that disallows every crawler, and names the major AI
+  crawlers (GPTBot, ClaudeBot, CCBot, Google-Extended, …) explicitly
+- adds a `noindex, nofollow, noai, …` robots meta tag to every page and the
+  same directives as an `X-Robots-Tag` header
+- publishes a TDM-reservation opt-out (`tdm-reservation` header, meta tag, and
+  `/.well-known/tdmrep.json`)
+- leaves out the schema.org recipe data, which mostly exists for crawlers
+
+These are requests, not locks: reputable crawlers honour them, bad actors
+don't. For enforcement, turn on Cloudflare's AI-bot blocking or put the site
+behind a password.
+
+Set `private: false` to reverse all of it.
+
 ## Notes on the frontend
 
 There's no JavaScript framework and no CSS framework. Search filters the cards

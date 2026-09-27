@@ -137,9 +137,12 @@ ogType: article
   </div>
 </article>
 
+{# Structured data mostly serves crawlers, so a private site leaves it out. #}
+{% if not site.private %}
 {% set schemaData = {
   title: title, description: description, image: image, servings: servings,
   source: source, sourceUrl: sourceUrl, tags: tags,
   ingredients: ingredients, directions: directions
 } %}
 <script type="application/ld+json">{{ schemaData | recipeSchema(site) | safe }}</script>
+{% endif %}

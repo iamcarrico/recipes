@@ -1,9 +1,17 @@
+---
+permalink: /_headers
+eleventyExcludeFromCollections: true
+---
 # Response headers. Netlify and Cloudflare Pages both read this file from the
 # root of the published site.
 
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+{%- if site.private %}
+  X-Robots-Tag: {{ site.robotsDirectives }}
+  tdm-reservation: 1
+{%- endif %}
 
 # CSS and JS keep the same URL between deploys, so browsers must revalidate
 # them. A long "immutable" lifetime would pin visitors to stale code.
