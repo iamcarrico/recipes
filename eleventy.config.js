@@ -3,6 +3,7 @@ import { parseIngredients, parseServings, ingredientLines } from './lib/ingredie
 import { parseDirections } from './lib/directions.js';
 import { recipeSchema } from './lib/schema.js';
 import { stripMarkdown } from './lib/sections.js';
+import { foldForSearch } from './src/assets/js/text.js';
 import { formatAmount, formatQuantity } from './src/assets/js/quantity.js';
 
 // Inline formatting inside ingredient and step strings. Raw HTML stays escaped.
@@ -29,10 +30,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('formatAmount', formatAmount);
   eleventyConfig.addFilter('formatQuantity', formatQuantity);
 
-  /** Lower-cased blob of searchable text, used by the client-side filter. */
+  /** Folded blob of searchable text, used by the client-side filter. */
   eleventyConfig.addFilter('searchHaystack', (recipe) => {
     const data = recipe.data ?? recipe;
-    return [
+    const text = [
       data.title,
       data.description,
       data.source,
@@ -41,8 +42,8 @@ export default function (eleventyConfig) {
     ]
       .filter(Boolean)
       .map(stripMarkdown)
-      .join(' ')
-      .toLowerCase();
+      .join(' ');
+    return foldForSearch(text);
   });
 
   eleventyConfig.addFilter('readableDate', (value) => {

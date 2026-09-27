@@ -6,6 +6,8 @@
  * mirrored into the URL so a filtered view can be bookmarked or shared.
  */
 
+import { foldForSearch } from './text.js';
+
 const TAG_SEPARATOR = ',';
 
 export function initSearch(root = document) {
@@ -22,7 +24,7 @@ export function initSearch(root = document) {
     element,
     // Hide the list item rather than the card so grid gaps collapse too.
     container: element.closest('li') ?? element,
-    haystack: (element.dataset.search ?? '').toLowerCase(),
+    haystack: element.dataset.search ?? '',
     tags: (element.dataset.tags ?? '')
       .split(TAG_SEPARATOR)
       .map((tag) => tag.trim())
@@ -85,7 +87,7 @@ export function initSearch(root = document) {
 
   if (input) {
     input.addEventListener('input', () => {
-      query = input.value.trim().toLowerCase();
+      query = foldForSearch(input.value.trim());
       apply();
     });
   }
@@ -119,7 +121,7 @@ export function initSearch(root = document) {
 
     const initialQuery = params.get('q') ?? '';
     if (initialQuery) {
-      query = initialQuery.trim().toLowerCase();
+      query = foldForSearch(initialQuery.trim());
       if (input) input.value = initialQuery;
     }
 
