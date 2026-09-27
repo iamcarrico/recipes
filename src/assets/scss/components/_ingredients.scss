@@ -37,11 +37,11 @@
 
     &:hover {
       background: var(--color-accent-soft);
-      color: var(--color-accent);
+      color: var(--color-accent-strong);
     }
 
     &[aria-pressed="true"] {
-      background: var(--color-accent);
+      background: var(--color-accent-strong);
       color: #fff;
     }
   }
@@ -76,7 +76,7 @@
   &__amount {
     font-weight: 700;
     font-variant-numeric: tabular-nums;
-    color: var(--color-accent);
+    color: var(--color-accent-strong);
     transition: background-color 400ms ease;
   }
 

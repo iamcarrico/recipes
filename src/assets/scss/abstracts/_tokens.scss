@@ -13,6 +13,9 @@ $bp-lg: 64rem;
   --color-ink-soft: #6f6055;
   --color-line: #f0e4d8;
   --color-accent: #f0562a;
+  // The bright accent is under 4.5:1 against light backgrounds, so anything
+  // that is text — or carries white text — uses this deeper shade instead.
+  --color-accent-strong: #c2410c;
   --color-accent-soft: #fff0ea;
   --color-highlight: #ffc93c;
   --color-mint: #1f8f66;
