@@ -46,6 +46,14 @@ export default function (eleventyConfig) {
     return foldForSearch(text);
   });
 
+  /** YYYY-MM-DD, whether YAML handed us a string or (unquoted) a Date. */
+  eleventyConfig.addFilter('isoDate', (value) => {
+    if (!value) return '';
+    if (value instanceof Date) return Number.isNaN(value.getTime()) ? '' : value.toISOString().slice(0, 10);
+    const match = String(value).match(/^\d{4}-\d{2}-\d{2}/);
+    return match ? match[0] : '';
+  });
+
   eleventyConfig.addFilter('readableDate', (value) => {
     if (!value) return '';
     const date = value instanceof Date ? value : new Date(value);

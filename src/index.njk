@@ -39,6 +39,14 @@ permalink: /
       </div>
     {% endif %}
 
+    <div class="sort-control">
+      <span class="sort-control__label" id="sort-label">Sort</span>
+      <div class="sort-control__buttons" role="group" aria-labelledby="sort-label">
+        <button type="button" class="sort-control__button" data-sort="name" aria-pressed="true">A&ndash;Z</button>
+        <button type="button" class="sort-control__button" data-sort="recent" aria-pressed="false">Recently added</button>
+      </div>
+    </div>
+
     <p class="filters__status" data-result-count role="status" aria-live="polite"></p>
   </section>
 

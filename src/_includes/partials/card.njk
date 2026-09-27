@@ -7,6 +7,7 @@
   data-recipe
   data-search="{{ recipe | searchHaystack }}"
   data-tags="{{ recipe.data.tags | join(',') }}"
+  data-created="{{ recipe.data.created | isoDate }}"
 >
   <a class="card__link" href="{{ recipe.url }}">
     <div class="card__media">

@@ -1,9 +1,10 @@
 /**
- * Client-side search and tag filtering for the recipe grid.
+ * Client-side search, tag filtering and sorting for the recipe grid.
  *
- * Every card is already in the DOM, so filtering is a matter of hiding rows —
- * no index to fetch and nothing to re-render. The current query and tags are
- * mirrored into the URL so a filtered view can be bookmarked or shared.
+ * Every card is already in the DOM, so filtering is a matter of hiding rows
+ * and sorting a matter of reordering them — no index to fetch and nothing to
+ * re-render. The query, tags and sort are mirrored into the URL so a view can
+ * be bookmarked or shared.
  */
 
 import { foldForSearch } from './text.js';
@@ -20,11 +21,16 @@ export function initSearch(root = document) {
   const status = root.querySelector('[data-result-count]');
   const emptyState = root.querySelector('[data-empty-state]');
 
-  const cards = [...grid.querySelectorAll('[data-recipe]')].map((element) => ({
+  const sortButtons = [...root.querySelectorAll('[data-sort]')];
+
+  const cards = [...grid.querySelectorAll('[data-recipe]')].map((element, index) => ({
     element,
     // Hide the list item rather than the card so grid gaps collapse too.
     container: element.closest('li') ?? element,
     haystack: element.dataset.search ?? '',
+    // The build renders A–Z, so the original position is the name order.
+    nameOrder: index,
+    created: element.dataset.created ?? '',
     tags: (element.dataset.tags ?? '')
       .split(TAG_SEPARATOR)
       .map((tag) => tag.trim())
@@ -33,6 +39,14 @@ export function initSearch(root = document) {
 
   const selectedTags = new Set();
   let query = '';
+  let sort = 'name';
+
+  const SORTS = {
+    name: (a, b) => a.nameOrder - b.nameOrder,
+    // Newest first; recipes without a date go last, then fall back to A–Z.
+    recent: (a, b) =>
+      (b.created || '0000').localeCompare(a.created || '0000') || a.nameOrder - b.nameOrder
+  };
 
   function matches(card) {
     for (const tag of selectedTags) {
@@ -44,6 +58,9 @@ export function initSearch(root = document) {
 
   function apply({ updateUrl = true } = {}) {
     let visible = 0;
+
+    const ordered = [...cards].sort(SORTS[sort]);
+    grid.append(...ordered.map((card) => card.container));
 
     for (const card of cards) {
       const isMatch = matches(card);
@@ -74,6 +91,9 @@ export function initSearch(root = document) {
     if (selectedTags.size > 0) params.set('tags', [...selectedTags].join(TAG_SEPARATOR));
     else params.delete('tags');
 
+    if (sort !== 'name') params.set('sort', sort);
+    else params.delete('sort');
+
     const search = params.toString();
     const url = search ? `${window.location.pathname}?${search}` : window.location.pathname;
     window.history.replaceState(null, '', url);
@@ -102,6 +122,21 @@ export function initSearch(root = document) {
     });
   }
 
+  function setSortPressedStates() {
+    for (const button of sortButtons) {
+      button.setAttribute('aria-pressed', button.dataset.sort === sort ? 'true' : 'false');
+    }
+  }
+
+  for (const button of sortButtons) {
+    button.addEventListener('click', () => {
+      if (!SORTS[button.dataset.sort]) return;
+      sort = button.dataset.sort;
+      setSortPressedStates();
+      apply();
+    });
+  }
+
   if (clearButton) {
     clearButton.addEventListener('click', () => {
       selectedTags.clear();
@@ -123,6 +158,12 @@ export function initSearch(root = document) {
     if (initialQuery) {
       query = foldForSearch(initialQuery.trim());
       if (input) input.value = initialQuery;
+    }
+
+    const initialSort = params.get('sort');
+    if (initialSort && SORTS[initialSort]) {
+      sort = initialSort;
+      setSortPressedStates();
     }
 
     const initialTags = params.get('tags');
