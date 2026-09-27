@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { headingText, toLine, toSections, stripMarkdown } from '../lib/sections.js';
-import { parseIngredients, parseServings, ingredientLines } from '../lib/ingredients.js';
+import { parseIngredients, parseServings, ingredientLines, yieldLabel } from '../lib/ingredients.js';
 import { parseDirections } from '../lib/directions.js';
 
 test('recognises bold and colon headings', () => {
@@ -56,4 +56,14 @@ test('parses yields with words around the number', () => {
 
 test('toSections keeps a heading with nothing under it', () => {
   assert.deepEqual(toSections(['**Lonely**'], (line) => line), [{ title: 'Lonely', items: [] }]);
+});
+
+test('uses a leading Serves/Makes/Yield as the yield label instead of doubling it', () => {
+  // Regression: cards read "Yield Yield 6 to 8 servings" and "Yield Serves 8".
+  assert.deepEqual(yieldLabel('Yield 6 to 8 servings'), { label: 'Yield', text: '6 to 8 servings', usesPrefix: true });
+  assert.deepEqual(yieldLabel('Serves 8'), { label: 'Serves', text: '8', usesPrefix: true });
+  assert.deepEqual(yieldLabel('Makes 16 bars'), { label: 'Makes', text: '16 bars', usesPrefix: true });
+  assert.deepEqual(yieldLabel('12 muffins'), { label: 'Yield', text: '12 muffins', usesPrefix: false });
+  assert.equal(yieldLabel('about 24 cookies').label, 'Yield');
+  assert.equal(yieldLabel(''), null);
 });

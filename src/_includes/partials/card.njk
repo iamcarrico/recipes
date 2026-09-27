@@ -35,8 +35,9 @@
         {% if recipe.data.totalTime %}
           <div><dt>Time</dt><dd>{{ recipe.data.totalTime }}</dd></div>
         {% endif %}
-        {% if recipe.data.servings %}
-          <div><dt>Yield</dt><dd>{{ recipe.data.servings }}</dd></div>
+        {% set yieldText = recipe.data.servings | yieldLabel %}
+        {% if yieldText %}
+          <div><dt>{{ yieldText.label }}</dt><dd>{{ yieldText.text }}</dd></div>
         {% endif %}
       </dl>
 

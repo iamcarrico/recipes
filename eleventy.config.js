@@ -1,5 +1,5 @@
 import MarkdownIt from 'markdown-it';
-import { parseIngredients, parseServings, ingredientLines } from './lib/ingredients.js';
+import { parseIngredients, parseServings, ingredientLines, yieldLabel } from './lib/ingredients.js';
 import { parseDirections } from './lib/directions.js';
 import { recipeSchema } from './lib/schema.js';
 import { stripMarkdown } from './lib/sections.js';
@@ -27,6 +27,7 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter('parseIngredients', parseIngredients);
   eleventyConfig.addFilter('parseServings', parseServings);
+  eleventyConfig.addFilter('yieldLabel', yieldLabel);
   eleventyConfig.addFilter('ingredientLines', ingredientLines);
   eleventyConfig.addFilter('parseDirections', parseDirections);
   eleventyConfig.addFilter('inlineMarkdown', (text) => inlineMarkdown.renderInline(String(text ?? '')));

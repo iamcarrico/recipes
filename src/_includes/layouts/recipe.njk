@@ -5,6 +5,7 @@ ogType: article
 {% set ingredientSections = ingredients | parseIngredients %}
 {% set directionSections = directions | parseDirections %}
 {% set yield = servings | parseServings %}
+{% set yieldText = servings | yieldLabel %}
 
 <article class="recipe">
   <header class="recipe__header wrap">
@@ -27,16 +28,17 @@ ogType: article
       {% if totalTime %}<div><dt>Total</dt><dd>{{ totalTime }}</dd></div>{% endif %}
       {% if yield %}
         <div>
-          <dt>Yield</dt>
+          <dt>{{ yieldText.label }}</dt>
           <dd>
             <span
               data-servings
               {% if yield.quantity %}data-qty="{{ yield.quantity }}"{% endif %}
               {% if yield.quantityMax %}data-qty-max="{{ yield.quantityMax }}"{% endif %}
               data-unit="{{ yield.unit }}"
-              data-prefix="{{ yield.prefix }}"
+              {# When the prefix is the label, the scaler mustn't repeat it. #}
+              data-prefix="{{ '' if yieldText.usesPrefix else yield.prefix }}"
               data-suffix="{{ yield.suffix }}"
-            >{{ yield.raw }}</span>
+            >{{ yieldText.text }}</span>
           </dd>
         </div>
       {% endif %}
