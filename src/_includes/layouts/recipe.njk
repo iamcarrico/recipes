@@ -2,7 +2,8 @@
 layout: layouts/base.njk
 ogType: article
 ---
-{% set parsedIngredients = ingredients | parseIngredients %}
+{% set ingredientSections = ingredients | parseIngredients %}
+{% set directionSections = directions | parseDirections %}
 {% set yield = servings | parseServings %}
 
 <article class="recipe">
@@ -65,11 +66,12 @@ ogType: article
         </div>
       </div>
 
-      <ul class="ingredients">
-        {% for item in parsedIngredients %}
-          {% if item.type == 'heading' %}
-            <li class="ingredients__heading">{{ item.text }}</li>
-          {% else %}
+      {% for section in ingredientSections %}
+        {% if section.title %}
+          <h3 class="ingredients__heading">{{ section.title | inlineMarkdown | safe }}</h3>
+        {% endif %}
+        <ul class="ingredients">
+          {% for item in section.items %}
             <li class="ingredient">
               {% if item.quantity %}
                 <span
@@ -80,11 +82,11 @@ ogType: article
                   data-unit="{{ item.unit }}"
                 >{{ item | formatAmount(1) }}</span>
               {% endif %}
-              <span class="ingredient__name">{{ item.name }}</span>
+              <span class="ingredient__name">{{ item.name | inlineMarkdown | safe }}</span>
             </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
+          {% endfor %}
+        </ul>
+      {% endfor %}
     </section>
 
     <section class="recipe__directions" aria-labelledby="directions-heading">
@@ -95,11 +97,17 @@ ogType: article
         Amounts in the steps below are written for the original recipe.
       </p>
 
-      <ol class="directions">
-        {% for step in directions %}
-          <li>{{ step }}</li>
-        {% endfor %}
-      </ol>
+      {% for section in directionSections %}
+        {% if section.title %}
+          <h3 class="directions__heading">{{ section.title | inlineMarkdown | safe }}</h3>
+        {% endif %}
+        {# Each section is its own list, so numbering restarts at 1. #}
+        <ol class="directions">
+          {% for step in section.items %}
+            <li><div>{{ step | inlineMarkdown | safe }}</div></li>
+          {% endfor %}
+        </ol>
+      {% endfor %}
 
       {% if content %}
         <div class="recipe__notes">
@@ -129,15 +137,9 @@ ogType: article
   </div>
 </article>
 
-{% set recipeSchema = {
-  "@context": "https://schema.org",
-  "@type": "Recipe",
-  "name": title,
-  "description": description,
-  "recipeIngredient": ingredients | ingredientLines,
-  "recipeYield": servings,
-  "totalTime": totalTime,
-  "author": { "@type": "Person", "name": site.author },
-  "keywords": tags | join(", ")
+{% set schemaData = {
+  title: title, description: description, image: image, servings: servings,
+  source: source, sourceUrl: sourceUrl, tags: tags,
+  ingredients: ingredients, directions: directions
 } %}
-<script type="application/ld+json">{{ recipeSchema | jsonLd | safe }}</script>
+<script type="application/ld+json">{{ schemaData | recipeSchema(site) | safe }}</script>

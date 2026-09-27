@@ -54,17 +54,30 @@ Anything below the front matter becomes the Notes section. Markdown works here.
 Only `title`, `ingredients` and `directions` are required. Every other field is
 dropped from the page when it's missing.
 
-### Section headings
+### Sections
 
-A line ending in a colon becomes a heading rather than a shopping-list item:
+Both `ingredients` and `directions` can be split into sections. A line on its
+own that is wholly bold, or short and ending in a colon, becomes a heading:
 
 ```yaml
 ingredients:
-  - For the crust:
-  - 1 cup all-purpose flour
-  - For the filling:
-  - 4 large eggs
+  - '**Shortcake**'
+  - 5 cups flour
+  - '**Topping**'
+  - 1/2 cup sugar
+directions:
+  - For the shortcake:
+  - Preheat the oven to 350.
+  - For the topping:
+  - Quarter the strawberries.
 ```
+
+Step numbering restarts at 1 in each section. Bold lines need quotes, because
+YAML reads a leading `*` as special. Colon headings don't.
+
+A bold label followed by more text is *not* a heading — `'**Oven**: bake for
+25 minutes'` stays a step, with "Oven" in bold. Ingredients and steps support
+inline markdown generally (`**bold**`, `*italic*`); raw HTML is escaped.
 
 ### Tags
 

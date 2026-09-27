@@ -141,6 +141,17 @@
   }
 }
 
+.directions__heading {
+  margin-top: var(--space-lg);
+  padding-bottom: var(--space-2xs);
+  font-size: var(--step-0);
+  border-bottom: 2px solid var(--color-accent-soft);
+
+  & + .directions {
+    margin-top: var(--space-sm);
+  }
+}
+
 .directions {
   counter-reset: step;
   display: grid;

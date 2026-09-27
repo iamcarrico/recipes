@@ -52,13 +52,17 @@
   gap: var(--space-xs);
 
   &__heading {
-    margin-top: var(--space-md);
+    margin-block: var(--space-md) var(--space-xs);
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--step--1);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--color-ink-soft);
+
+    &:first-of-type {
+      margin-top: 0;
+    }
   }
 }
 

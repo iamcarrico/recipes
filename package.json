@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
+    "markdown-it": "^14.3.2",
     "npm-run-all2": "^7.0.2",
     "sass": "^1.83.0"
   },

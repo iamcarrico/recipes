@@ -1,5 +1,12 @@
+import MarkdownIt from 'markdown-it';
 import { parseIngredients, parseServings, ingredientLines } from './lib/ingredients.js';
+import { parseDirections } from './lib/directions.js';
+import { recipeSchema } from './lib/schema.js';
+import { stripMarkdown } from './lib/sections.js';
 import { formatAmount, formatQuantity } from './src/assets/js/quantity.js';
+
+// Inline formatting inside ingredient and step strings. Raw HTML stays escaped.
+const inlineMarkdown = new MarkdownIt({ html: false, linkify: false, typographer: false });
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default function (eleventyConfig) {
@@ -17,6 +24,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('parseIngredients', parseIngredients);
   eleventyConfig.addFilter('parseServings', parseServings);
   eleventyConfig.addFilter('ingredientLines', ingredientLines);
+  eleventyConfig.addFilter('parseDirections', parseDirections);
+  eleventyConfig.addFilter('inlineMarkdown', (text) => inlineMarkdown.renderInline(String(text ?? '')));
+  eleventyConfig.addFilter('recipeSchema', recipeSchema);
   eleventyConfig.addFilter('formatAmount', formatAmount);
   eleventyConfig.addFilter('formatQuantity', formatQuantity);
 
@@ -31,6 +41,7 @@ export default function (eleventyConfig) {
       ...ingredientLines(data.ingredients)
     ]
       .filter(Boolean)
+      .map(stripMarkdown)
       .join(' ')
       .toLowerCase();
   });
@@ -46,10 +57,6 @@ export default function (eleventyConfig) {
       timeZone: 'UTC'
     });
   });
-
-  eleventyConfig.addFilter('jsonLd', (value) =>
-    JSON.stringify(value).replace(/</g, '\\u003c')
-  );
 
   /** Every recipe, newest first. */
   eleventyConfig.addCollection('recipes', (collectionApi) =>
