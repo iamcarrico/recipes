@@ -17,9 +17,14 @@ ingredients:
   - 1 cup buttermilk
 directions:
   - Preheat oven to 450
-  - Mix all dry ingredients.  Measure out the buttermilk to be ready to mix in. 2. Cut the butter into small pieces, then add to the dry ingredients.  Break up the large pieces until you have small, pea-sized pieces broken up throughout.  Work quickly to keep the butter cold. 3.  Mix in the buttermilk with a spoon* 4.  Lay out dough on the counter, pat down into a large rectangle.  Fold onto itself and pat back down.  Repeat until you have folded the dough 7 times. 5.  Pat dough out until it is about 1" thick in a large rectangle.  Cut off the very edges, and then into 6 rectangles of the same size. 6.  Put into a large, heavy bottomed pan--or two baking pans on top of each other.  Bake for 8-10 minutes, or until golden brown.  Take out immediately and remove from pan and sit on towel.
+  - Mix all dry ingredients.  Measure out the buttermilk to be ready to mix in.
+  - Cut the butter into small pieces, then add to the dry ingredients.  Break up the large pieces until you have small, pea-sized pieces broken up throughout.  Work quickly to keep the butter cold.
+  - Mix in the buttermilk with a spoon*
+  - Lay out dough on the counter, pat down into a large rectangle.  Fold onto itself and pat back down.  Repeat until you have folded the dough 7 times.
+  - Pat dough out until it is about 1" thick in a large rectangle.  Cut off the very edges, and then into 6 rectangles of the same size.
+  - Put into a large, heavy bottomed pan--or two baking pans on top of each other.  Bake for 8-10 minutes, or until golden brown.  Take out immediately and remove from pan and sit on towel.
 ---
 
-* I made with hands the first time, which may have melted some of the butter prematurely. 
+\* I made with hands the first time, which may have melted some of the butter prematurely. 
 
 Next time: 2T more butter

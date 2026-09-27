@@ -46,7 +46,6 @@ ingredients:
   - 2 tablespoons vodka or other neutral spirit
   - 2 quarts peanut or vegetable oil, for deep frying
 directions:
-  - .
   - Place 8 bone-in chicken pieces on a baking sheet and sprinkle all over with 1 tablespoon of the kosher salt. Let sit at room temperature for 30 minutes or cover loosely and refrigerate overnight.
   - Coat the chicken all over with half of the seasoning mixture (about 3 tablespoons).
   - Add 1 1/2 cups all-purpose flour, 1 tablespoon cornstarch, and the remaining 1 1/2 teaspoons kosher salt to the remaining spice mixture in the bowl and whisk to combine. Place 1 cup buttermilk, 2 large egg whites, and 2 tablespoons vodka in a medium bowl and whisk to combine. Fit a wire rack over a second rimmed baking sheet.

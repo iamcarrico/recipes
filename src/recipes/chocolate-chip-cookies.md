@@ -26,7 +26,7 @@ directions:
   - Sift together flour, salt, and soda— Stir into creamed mixture. Blend well.
   - Stir in oats. Add in chips and nuts (optional)
   - Drop on ungreased baking sheet— 12 per pan
-  - Bake 350— Approximately 10-11min (they will LOOK undercooked)   -
+  - Bake 350— Approximately 10-11min (they will LOOK undercooked)
   - Remove from oven when lightly browned (They will continue to brown outside the oven.)
   - Put on a slight amount of flake sea salt (generally one pinch for a dozen) right when they get out of the oven
 ---

@@ -21,7 +21,7 @@ ingredients:
   - 1 (28-ounce) can whole peeled tomatoes
   - 1 medium onion, peeled and roughly chopped
   - 2 cups chicken stock
-  - 1 1/ 2 teaspoons kosher salt
+  - 1 1/2 teaspoons kosher salt
   - 1/2 teaspoon ground cumin
   - 1/3 cup neutral cooking oil, such as canola or safflower (or rendered lard)
   - 2 cups long-grain white rice

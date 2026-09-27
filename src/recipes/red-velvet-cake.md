@@ -24,6 +24,7 @@ ingredients:
   - 1 c sugar
   - 2 tsp vanilla
 directions:
+  - '**Cake**'
   - Prepare 3 9” round cake pans. Heat oven to 350.
   - Mix sugar, buttermilk, vegetable oil, vanilla, vinegar well. Beat in two large eggs.
   - In a separate bowl, mix together self-rising flour, baking soda, and cocoa. Add to creamed mixture.

@@ -1,10 +1,10 @@
 ---
 title: How to Make Creamy Macaroni and Cheese on the Stove
 tags:
-  - pasta
-  - comfort food
-  - weeknight
-  - vegetarian
+  - Pasta
+  - Comfort Food
+  - Weeknight
+  - Vegetarian
 servings: 4 to 6
 image: /assets/images/recipes/how-to-make-creamy-macaroni-and-cheese-on-the-stove.jpg
 imageAlt: How to Make Creamy Macaroni and Cheese on the Stove

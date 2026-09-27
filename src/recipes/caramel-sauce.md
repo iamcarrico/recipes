@@ -2,7 +2,7 @@
 title: Caramel Sauce
 tags:
   - Dessert
-prepTime: '15'
+prepTime: 15 minutes
 image: /assets/images/recipes/caramel-sauce.jpg
 imageAlt: Caramel Sauce
 source: Bon Appetit

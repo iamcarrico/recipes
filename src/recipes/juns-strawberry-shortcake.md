@@ -24,7 +24,18 @@ ingredients:
 directions:
   - '**Long before:**'
   - Mix lemon, quartered strawberries, and sugar together— refrigerate for a couple hours
-  - "**To make shortcake** 1.\tPreheat oven to 350 2.\tMix together flour, salt, baking powder, and sugar 3.\tMake sure butter is room temp, then mix in butter and shortening until well mixed. 4.\tMix cream/water— then mix into dry ingredients 5.\tBrush with some cream and sprinkle with sugar 6.\tBake for 15 min, or until golden brown. Let cool on baking rack."
-  - "**Topping** 1.\tStrain strawberry juice into a separate container, squeeze bottle. 2.\tCut the shortcake in half. 3.\tPowder the top halves with some powdered sugar 4.\tLayer bottom, strained strawberries, whipped cream— the top tilted to the side. Circle with the strawberry juice. 5.\tGarnish with mint and blueberries"
+  - '**To make shortcake**'
+  - Preheat oven to 350
+  - Mix together flour, salt, baking powder, and sugar
+  - Make sure butter is room temp, then mix in butter and shortening until well mixed.
+  - Mix cream/water— then mix into dry ingredients
+  - Brush with some cream and sprinkle with sugar
+  - Bake for 15 min, or until golden brown. Let cool on baking rack.
+  - '**Topping**'
+  - Strain strawberry juice into a separate container, squeeze bottle.
+  - Cut the shortcake in half.
+  - Powder the top halves with some powdered sugar
+  - Layer bottom, strained strawberries, whipped cream— the top tilted to the side. Circle with the strawberry juice.
+  - Garnish with mint and blueberries
 ---
 

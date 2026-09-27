@@ -22,7 +22,7 @@ directions:
   - Beat eggs, add sugar and oil. Beat well.
   - Combine dry ingredients together and add to egg mixture.
   - Drain pineapple juice, then add pineapple and grated carrots. Beat well.
-  - Grease flour and parchment paper 3 - 8" pans. Dived batter between pans.
+  - Grease flour and parchment paper 3 - 8" pans. Divide batter between pans.
   - Bake at 350' for 30 minutes
 ---
 
