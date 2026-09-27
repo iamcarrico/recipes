@@ -214,13 +214,34 @@ behind a password.
 
 Set `private: false` to reverse all of it.
 
+## Cooking from the site
+
+- **Check off as you go.** Tap an ingredient or a step to mark it done. Ticks
+  are kept per recipe for a day, then clear themselves; **Clear checkmarks**
+  resets them sooner.
+- **Timers.** Cooking times in the steps ("bake for 25–30 minutes") are
+  buttons that start a countdown in a tray at the bottom of the screen. Ranges
+  time the low end. A finished timer beeps, vibrates where the phone can, and
+  stays up until dismissed. Timers survive a reload, but phones pause
+  background pages, so keep the recipe open.
+- **Keep screen on.** On by default while a recipe is open, so the phone
+  doesn't lock mid-recipe; the toggle is remembered. Hidden in browsers that
+  don't support it.
+- **Print.** A clean one-column page, always light, with empty tick-boxes.
+  Scaled amounts print as scaled.
+- **Dark mode.** Follows the phone's setting until you use the toggle in the
+  header, which is then remembered.
+
 ## Notes on the frontend
 
 There's no JavaScript framework and no CSS framework. Search filters the cards
-already in the DOM rather than fetching an index, and mirrors the query and
-selected tags into the URL so a filtered view can be shared. Tag filters
-combine with AND — picking `vegetarian` and `baking` shows recipes that are
-both.
+already in the DOM rather than fetching an index, and mirrors the query, tags
+and sort into the URL so a view can be shared. Search ignores accents
+("creme" finds "crème"). Tag filters combine with AND — picking `Side` and
+`Thanksgiving` shows recipes that are both. **Recently added** sorts by each
+recipe's `created` date.
 
-Every page renders fully without JavaScript; the search box and scale buttons
-are the only things that need it.
+Every page renders fully without JavaScript; search, scaling, check-offs,
+timers and the theme toggle are the parts that need it. Colours come from
+tokens in `src/assets/scss/abstracts/_tokens.scss`, with a light and a dark
+palette, and all text meets WCAG AA contrast.
