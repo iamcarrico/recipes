@@ -80,7 +80,12 @@ const UNITS = [
   ['rib', 'ribs'],
   ['sheet', 'sheets'],
   ['bottle', 'bottles'],
-  ['container', 'containers']
+  ['container', 'containers'],
+  // Whole items, for yields like "1 cake (three 9-inch layers)".
+  ['cake', 'cakes'],
+  ['pie', 'pies'],
+  ['loaf', 'loaves'],
+  ['batch', 'batches']
 ];
 
 const UNIT_LOOKUP = new Map();
