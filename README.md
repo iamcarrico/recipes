@@ -18,6 +18,7 @@ That serves the site at <http://localhost:8080> and rebuilds as you edit.
 | `npm run dev` | Local server with live reload |
 | `npm run build` | Production build into `_site/` |
 | `npm run import` | Import recipes from a Paprika export |
+| `npm run icons` | Regenerate the home-screen icons from the favicon |
 | `npm run clean` | Delete build output |
 
 ## Adding a recipe
@@ -145,6 +146,29 @@ The build is a static folder, so any host works.
 
 Both read caching and security headers from `src/_headers`, which is copied
 to the root of the build.
+
+## Home-screen app
+
+The site installs as an app. On iPhone: open it in Safari → **Share** →
+**Add to Home Screen**. It opens full-screen, with no browser bars.
+
+A service worker saves every recipe and photo on the device when the app is
+first opened, so the whole cookbook works with no signal. Online, pages always
+come from the network, so edits show up on the next visit; the saved copy is
+only used when the network isn't there. Each deploy that changes anything
+refreshes the saved copy automatically.
+
+### Icons
+
+The app icons are generated from `src/favicon.ico`:
+
+```bash
+npm run icons
+```
+
+The hat is 32px, so it's scaled up with hard pixel edges. If you find a larger
+original, pass it in for sharper icons (`npm run icons -- path/to/hat.png`) and
+commit the results in `src/assets/icons/`.
 
 ## Privacy: search engines and AI crawlers
 

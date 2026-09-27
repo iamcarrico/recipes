@@ -1,5 +1,7 @@
 export default {
   title: 'Carrico Recipes',
+  // Label under the home-screen icon; iOS truncates anything much longer.
+  shortTitle: 'Recipes',
   tagline: 'The ones we actually cook.',
   description:
     'A small, searchable collection of the Carrico family’s favorite recipes.',

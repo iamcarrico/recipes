@@ -1,0 +1,87 @@
+---
+permalink: /sw.js
+eleventyExcludeFromCollections: true
+---
+/**
+ * Service worker: keeps every recipe available offline.
+ *
+ * Pages, styles and scripts are network-first, so an online visitor always
+ * sees the latest deploy and the saved copy is only a fallback. Photos are
+ * cache-first because they are large and rarely change. The cache name
+ * carries a hash of the source, so each deploy that changes anything installs
+ * a fresh copy and deletes the old one.
+ */
+
+const PREFIX = 'carrico-recipes-';
+const CACHE = `${PREFIX}{{ build.version }}`;
+const OFFLINE_URL = '/offline/';
+
+// Needed for the app to open at all. If any of these fail, don't install.
+const CORE = {{ build.assets | precacheCore | dump | safe }};
+
+// Every recipe and its photo. One missing file shouldn't block installation.
+const RECIPES = {{ collections.recipes | precacheRecipes | dump | safe }};
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    (async () => {
+      const cache = await caches.open(CACHE);
+      await cache.addAll(CORE);
+      await Promise.allSettled(RECIPES.map((url) => cache.add(url)));
+      await self.skipWaiting();
+    })()
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    (async () => {
+      const keys = await caches.keys();
+      await Promise.all(
+        keys.filter((key) => key.startsWith(PREFIX) && key !== CACHE).map((key) => caches.delete(key))
+      );
+      await self.clients.claim();
+    })()
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  if (request.method !== 'GET') return;
+
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;
+
+  event.respondWith(
+    url.pathname.startsWith('/assets/images/') ? cacheFirst(request) : networkFirst(request, url)
+  );
+});
+
+async function networkFirst(request, url) {
+  const cache = await caches.open(CACHE);
+  const isPage = request.mode === 'navigate';
+  // "/?tags=Dessert" and "/" are the same page; store it once.
+  const key = isPage ? `${url.origin}${url.pathname}` : request;
+
+  try {
+    const response = await fetch(request);
+    // Safari refuses redirected responses for navigations, so never store them.
+    if (response.ok && !response.redirected) await cache.put(key, response.clone());
+    return response;
+  } catch (error) {
+    const saved = await cache.match(key);
+    if (saved) return saved;
+    if (isPage) return (await cache.match(OFFLINE_URL)) ?? Response.error();
+    throw error;
+  }
+}
+
+async function cacheFirst(request) {
+  const cache = await caches.open(CACHE);
+  const saved = await cache.match(request);
+  if (saved) return saved;
+
+  const response = await fetch(request);
+  if (response.ok) await cache.put(request, response.clone());
+  return response;
+}

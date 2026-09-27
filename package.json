@@ -15,7 +15,8 @@
     "dev": "npm-run-all clean build:css --parallel watch:*",
     "watch:css": "sass src/assets/scss/main.scss src/assets/css/main.css --watch --no-source-map",
     "watch:site": "eleventy --serve",
-    "import": "node scripts/import-paprika.js"
+    "import": "node scripts/import-paprika.js",
+    "icons": "node scripts/generate-icons.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",

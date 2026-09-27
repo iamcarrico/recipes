@@ -20,6 +20,10 @@ eleventyExcludeFromCollections: true
 /assets/js/*
   Cache-Control: public, max-age=0, must-revalidate
 
+# The service worker must always be checked for updates.
+/sw.js
+  Cache-Control: no-cache
+
 # Photos and icons change rarely; a week is a fair trade.
 /assets/images/*
   Cache-Control: public, max-age=604800

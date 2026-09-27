@@ -18,6 +18,15 @@
 
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
+
+    {# Installable app: Android/desktop read the manifest; iOS reads the apple-* tags. #}
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="{{ site.shortTitle }}">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
