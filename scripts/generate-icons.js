@@ -25,7 +25,8 @@ import process from 'node:process';
 
 const DEFAULT_SOURCE = 'src/favicon.ico';
 const DEFAULT_OUTPUT_DIR = 'src/assets/icons';
-const DEFAULT_BACKGROUND = '#f0562a';
+// Muted sage: calm, and the tan hat stands out against it.
+const DEFAULT_BACKGROUND = '#6b8f71';
 
 // `fill` is the share of the icon the artwork may occupy. Maskable icons get
 // cropped to a circle on Android, so their art stays inside the safe zone.
