@@ -4,10 +4,14 @@
  *
  *   npm run icons                          # from src/favicon.ico
  *   npm run icons -- path/to/bigger.png    # from any larger artwork
+ *   npm run icons -- --background '#2b2118' --out /tmp/try   # preview a colour
  *
  * The art is scaled up by a whole-number factor with nearest-neighbour
  * sampling, so a small pixel-art favicon stays crisp instead of turning to
  * mush, then centred on a solid background (iOS shows transparency as black).
+ * It also writes logo.png: the art alone, cropped and transparent, at its
+ * native size, for the site header to scale up with `image-rendering:
+ * pixelated`.
  *
  * Uses only Node built-ins: it reads ICO (32-bit BMP or PNG entries) and
  * 8-bit PNG, and writes PNG. Re-run it whenever the source art changes and
@@ -20,10 +24,8 @@ import path from 'node:path';
 import process from 'node:process';
 
 const DEFAULT_SOURCE = 'src/favicon.ico';
-const OUTPUT_DIR = 'src/assets/icons';
-
-// The site's accent colour; the pale hat reads well against it.
-const BACKGROUND = hexToRgb('#f0562a');
+const DEFAULT_OUTPUT_DIR = 'src/assets/icons';
+const DEFAULT_BACKGROUND = '#f0562a';
 
 // `fill` is the share of the icon the artwork may occupy. Maskable icons get
 // cropped to a circle on Android, so their art stays inside the safe zone.
@@ -35,18 +37,22 @@ const ICONS = [
 ];
 
 async function main() {
-  const source = process.argv[2] ?? DEFAULT_SOURCE;
-  const image = trim(await readImage(source));
+  const options = parseArguments(process.argv.slice(2));
+  const image = trim(await readImage(options.source));
+  const background = hexToRgb(options.background);
 
-  await mkdir(OUTPUT_DIR, { recursive: true });
+  await mkdir(options.outputDir, { recursive: true });
+
+  await writeFile(path.join(options.outputDir, 'logo.png'), encodePng(image, { alpha: true }));
+  console.log(`✓ logo.png (${image.width}×${image.height}, transparent)`);
 
   for (const icon of ICONS) {
     const scale = Math.max(
       1,
       Math.floor(Math.min((icon.size * icon.fill) / image.width, (icon.size * icon.fill) / image.height))
     );
-    const png = encodePng(compose(image, icon.size, scale, BACKGROUND));
-    await writeFile(path.join(OUTPUT_DIR, icon.file), png);
+    const png = encodePng(compose(image, icon.size, scale, background));
+    await writeFile(path.join(options.outputDir, icon.file), png);
     console.log(`✓ ${icon.file} (${icon.size}px, art at ${scale}×)`);
   }
 
@@ -55,6 +61,19 @@ async function main() {
       `\nThe source art is only ${image.width}×${image.height}. For sharper icons, run this again with a larger original.`
     );
   }
+}
+
+function parseArguments(argv) {
+  const options = { source: DEFAULT_SOURCE, outputDir: DEFAULT_OUTPUT_DIR, background: DEFAULT_BACKGROUND };
+  for (let index = 0; index < argv.length; index += 1) {
+    if (argv[index] === '--background') options.background = argv[++index];
+    else if (argv[index] === '--out') options.outputDir = argv[++index];
+    else options.source = argv[index];
+  }
+  if (!/^#?[0-9a-f]{6}$/i.test(options.background ?? '')) {
+    throw new Error(`--background must be a six-digit hex colour, e.g. #2b2118`);
+  }
+  return options;
 }
 
 /** @returns {Promise<{width: number, height: number, pixels: Uint8Array}>} RGBA */
@@ -201,21 +220,20 @@ function paeth(a, b, c) {
   return pb <= pc ? b : c;
 }
 
-/** Opaque RGB PNG, unfiltered rows. */
-function encodePng({ width, height, pixels }) {
-  const raw = Buffer.alloc(height * (width * 3 + 1));
+/** PNG with unfiltered rows: RGB from `compose`, or RGBA with `alpha`. */
+function encodePng({ width, height, pixels }, { alpha = false } = {}) {
+  const channels = alpha ? 4 : 3;
+  const stride = width * channels;
+  const raw = Buffer.alloc(height * (stride + 1));
   for (let y = 0; y < height; y += 1) {
-    for (let x = 0; x < width; x += 1) {
-      const from = (y * width + x) * 3;
-      raw.set(pixels.subarray(from, from + 3), y * (width * 3 + 1) + 1 + x * 3);
-    }
+    raw.set(pixels.subarray(y * stride, (y + 1) * stride), y * (stride + 1) + 1);
   }
 
   const header = Buffer.alloc(13);
   header.writeUInt32BE(width, 0);
   header.writeUInt32BE(height, 4);
   header[8] = 8; // bit depth
-  header[9] = 2; // colour type: RGB
+  header[9] = alpha ? 6 : 2; // colour type: RGBA or RGB
 
   return Buffer.concat([
     PNG_SIGNATURE,

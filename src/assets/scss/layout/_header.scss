@@ -23,12 +23,13 @@
     text-decoration: none;
   }
 
+  // The hat is 32px pixel art shown at exactly 2x, so every source pixel lands
+  // on whole device pixels on 2x and 3x screens and stays sharp.
   &__mark {
-    font-size: 1.6rem;
-    line-height: 1;
-    background: var(--color-accent-soft);
-    border-radius: var(--radius-md);
-    padding: var(--space-xs);
+    width: 64px;
+    height: auto;
+    image-rendering: pixelated;
+    flex-shrink: 0;
   }
 
   &__title {
